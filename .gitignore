@@ -163,3 +163,10 @@ opencood/tools/save_params.py
 ./vscode
 .vscode
 opencood/tools/inference_w_noise_heter.py
+# Checkpoints (HuggingFace yifanlu/HEAL). Blobs fuera de git: GitHub rechaza >100 MB.
+checkpoints/**/*.zip
+checkpoints/**/*.pth
+checkpoints/**/*.pt
+checkpoints/**/events.out.tfevents.*
+!checkpoints/**/config.yaml
+!checkpoints/**/MANIFEST*
