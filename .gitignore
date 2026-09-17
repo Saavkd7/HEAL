@@ -170,3 +170,10 @@ checkpoints/**/*.pt
 checkpoints/**/events.out.tfevents.*
 !checkpoints/**/config.yaml
 !checkpoints/**/MANIFEST*
+
+# HEAL-Concordia sibling project (QCar recordings, calibration, notebooks,
+# artifacts -- data only, no framework code), nested here so relative
+# dataset paths in qcar_real configs resolve locally. Not part of the
+# upstream-facing diff, has its own separate git history.
+/HEAL-Concordia/
+/qcar_dataset

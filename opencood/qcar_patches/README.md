@@ -48,10 +48,12 @@ unfilled.
 `root_dir` / `validate_dir` / `test_dir` in the configs above point at
 `qcar_dataset/Inference/<split-name>/{train,validate,test}`, relative to the
 repo root, in the same per-frame layout HEAL's own OPV2V loader expects
-(`<frame_id>_camera0.png` + `<frame_id>.yaml`). The QCar recordings
-themselves, calibration reports, and conversion tooling that produces this
-layout are not part of this repository — see the project's
-`HEAL-Concordia` sibling project for that.
+(`<frame_id>_camera0.png` + `<frame_id>.yaml`). That path is a symlink
+(`qcar_dataset -> HEAL-Concordia/data/qcar_dataset`) into `HEAL-Concordia/`,
+a `.gitignore`d directory nested at the repo root holding the QCar
+recordings, calibration reports, and conversion tooling that produce this
+layout — data only, no framework code, and not part of this repository's
+git history or of the upstream-facing diff.
 
 ## Usage
 
