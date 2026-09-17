@@ -8,7 +8,6 @@ counterpart to eval_qcar.py's recall/AP numbers.
 import argparse
 import json
 import os
-import sys
 
 import cv2
 import numpy as np
@@ -20,8 +19,11 @@ import opencood.qcar_patches.patch_real_extrinsic  # noqa: F401
 from opencood.data_utils.datasets import build_dataset
 from opencood.tools import train_utils
 
-sys.path.insert(0, "/mnt/mainvolume/Backup/Projects/HEAL/qcar_dataset/Inference")
-from visualize_boxes import EDGES  # noqa: E402
+# 12 edges of a 3D bounding-box cuboid, by corner index (0-3 bottom face,
+# 4-7 top face, matching box_corners_world()'s corner ordering).
+EDGES = [(0, 1), (1, 2), (2, 3), (3, 0),
+         (4, 5), (5, 6), (6, 7), (7, 4),
+         (0, 4), (1, 5), (2, 6), (3, 7)]
 
 
 def project_ego_frame(corners_xyz10, K, R_cb, t_cb):

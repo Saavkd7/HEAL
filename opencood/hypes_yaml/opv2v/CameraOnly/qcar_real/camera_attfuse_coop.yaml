@@ -1,7 +1,8 @@
 name: HeterBaseline_opv2v_camera_attfuse_qcar_coop
-# Filled in once the pretrain run picks a final best checkpoint -- see
-# opencood/qcar_patches/set_coop_checkpoint.py or update by hand.
-_qcar_pretrained_checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/HeterBaseline_opv2v_camera_attfuse_qcar_pretrain_2026_09_14_02_49_15/net_epoch_bestval_at1.pth
+# Fill this in by hand once the pretrain run (camera_attfuse_pretrain.yaml)
+# picks a final best checkpoint, e.g.
+#   opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_pretrain_<run>/net_epoch_bestval_at1.pth
+_qcar_pretrained_checkpoint: opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_pretrain_<run>/net_epoch_bestval_at1.pth
 _qcar_stage: "cooperation training -- two real agents (qcar-52775 x qcar-52776), starting from the pretrained encoder"
 _qcar_freeze_encoder_blocks: 8  # same freeze as pretrain; CoopFront is small (819 train pairs), keep conservative
 root_dir: qcar_dataset/Inference/CoopFront/train
