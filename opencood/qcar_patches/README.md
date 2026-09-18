@@ -1,5 +1,13 @@
 # QCar Real-Testbed Integration
 
+> Developed by **Kevin Saavedra** (MSc, University of Calabria)
+> Collaborators **Daryel León** (PhD student, Concordia University)
+	     **Wissam Fawaz** (Lebanese American University). 
+> Supervisors : **Chadi Assi** (Host, Concordia University) 
+> 	     **Floriano De Rango** (Home, University of Calabria), with
+> 
+> As a Part of the MITACS program.
+
 Camera-only HEAL (`camera_attfuse`, and one Pyramid Fusion config) driven by
 live sensor data from Quanser QCar physical vehicles, instead of the
 simulated OPV2V/V2XSet/V2X-Sim/DAIR-V2X-C datasets. This directory holds
@@ -46,7 +54,7 @@ unfilled.
 ## Dataset layout expected by these configs
 
 `root_dir` / `validate_dir` / `test_dir` in the configs above point at
-`qcar_dataset/Inference/<split-name>/{train,validate,test}`, relative to the
+`qcar_dataset/pipeline/datasets/<split-name>/{train,validate,test}`, relative to the
 repo root, in the same per-frame layout HEAL's own OPV2V loader expects
 (`<frame_id>_camera0.png` + `<frame_id>.yaml`). That path is a symlink
 (`qcar_dataset -> HEAL-Concordia/data/qcar_dataset`) into `HEAL-Concordia/`,

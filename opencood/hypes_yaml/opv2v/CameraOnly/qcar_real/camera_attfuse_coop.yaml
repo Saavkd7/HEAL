@@ -5,8 +5,8 @@ name: HeterBaseline_opv2v_camera_attfuse_qcar_coop
 _qcar_pretrained_checkpoint: opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_pretrain_<run>/net_epoch_bestval_at1.pth
 _qcar_stage: "cooperation training -- two real agents (qcar-52775 x qcar-52776), starting from the pretrained encoder"
 _qcar_freeze_encoder_blocks: 8  # same freeze as pretrain; CoopFront is small (819 train pairs), keep conservative
-root_dir: qcar_dataset/Inference/CoopFront/train
-validate_dir: qcar_dataset/Inference/CoopFront/validate
+root_dir: qcar_dataset/pipeline/datasets/CoopFront/train
+validate_dir: qcar_dataset/pipeline/datasets/CoopFront/validate
 test_dir: null
 yaml_parser: load_general_params
 train_params: {batch_size: 2, epoches: 15, eval_freq: 1, save_freq: 1, max_cav: 2}
@@ -65,7 +65,7 @@ postprocess:
   target_args: {pos_threshold: 0.6, neg_threshold: 0.45, score_threshold: 0.2}
   order: hwl
   max_num: 150
-  nms_thresh: 0.15
+  nms_thresh: 0.05
   dir_args: &id005
     dir_offset: 0.7853
     num_bins: 2

@@ -1,8 +1,8 @@
 name: HeterBaseline_opv2v_camera_attfuse
-_qcar_pretrained_checkpoint: checkpoints/opv2v_camera/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
-root_dir: qcar_dataset/Inference/opv2v_ready/train
-validate_dir: qcar_dataset/Inference/opv2v_ready/validate
-test_dir: qcar_dataset/Inference/opv2v_ready/test
+_qcar_pretrained_checkpoint: checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
+root_dir: qcar_dataset/pipeline/datasets/opv2v_ready/train
+validate_dir: qcar_dataset/pipeline/datasets/opv2v_ready/validate
+test_dir: qcar_dataset/pipeline/datasets/opv2v_ready/test
 yaml_parser: load_general_params
 train_params: {batch_size: 1, epoches: 20, eval_freq: 2, save_freq: 2, max_cav: 5}
 comm_range: 70

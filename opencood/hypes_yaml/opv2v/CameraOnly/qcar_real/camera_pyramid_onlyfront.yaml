@@ -15,10 +15,10 @@
 # still begin randomly initialized, so this remains an experimental run.
 
 name: HeterBaseline_opv2v_camera_pyramid
-root_dir: qcar_dataset/Inference/OnlyFront_dev/train
-validate_dir: qcar_dataset/Inference/OnlyFront_dev/validate
+root_dir: qcar_dataset/pipeline/datasets/SmokeTestFront_dev/train
+validate_dir: qcar_dataset/pipeline/datasets/SmokeTestFront_dev/validate
 test_dir: null
-_qcar_final_train_dir: qcar_dataset/Inference/OnlyFront_dev/final_train
+_qcar_final_train_dir: qcar_dataset/pipeline/datasets/SmokeTestFront_dev/final_train
 _qcar_split_policy: purged temporal-block development validation; final test requires a new trajectory
 yaml_parser: load_general_params
 train_params: {batch_size: 1, epoches: 30, eval_freq: 2, save_freq: 2, max_cav: 5}
@@ -148,5 +148,5 @@ lr_scheduler:
   gamma: 0.1
   step_size: [15, 30]
 _qcar_pretrained_checkpoint: null
-_qcar_encoder_initialization_checkpoint: checkpoints/opv2v_camera/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
+_qcar_encoder_initialization_checkpoint: checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
 _qcar_encoder_initialization_prefixes: [encoder_m2.]

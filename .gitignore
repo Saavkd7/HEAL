@@ -163,13 +163,16 @@ opencood/tools/save_params.py
 ./vscode
 .vscode
 opencood/tools/inference_w_noise_heter.py
-# Checkpoints (HuggingFace yifanlu/HEAL). Blobs fuera de git: GitHub rechaza >100 MB.
-checkpoints/**/*.zip
-checkpoints/**/*.pth
-checkpoints/**/*.pt
-checkpoints/**/events.out.tfevents.*
-!checkpoints/**/config.yaml
-!checkpoints/**/MANIFEST*
+# Checkpoints (HuggingFace yifanlu/HEAL). Everything under a run folder is
+# gitignored -- it's re-downloadable per MANIFEST.md's checksums, not
+# authored here. Fixed 2026-09-18: the old rule only excluded *.zip/*.pth/
+# *.pt/tfevents, so each run's config.yaml/scripts/ code-snapshot/
+# vis_intermediate*/ images were NOT excluded -- caught before an
+# accidental ~1500-file/~350MB commit. Only the two curated top-level docs
+# are tracked.
+checkpoints/*/
+!checkpoints/MANIFEST.md
+!checkpoints/README.md
 
 # HEAL-Concordia sibling project (QCar recordings, calibration, notebooks,
 # artifacts -- data only, no framework code), nested here so relative

@@ -1,13 +1,13 @@
 name: HeterBaseline_opv2v_camera_attfuse_qcar_pretrain
-_qcar_pretrained_checkpoint: checkpoints/opv2v_camera/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
+_qcar_pretrained_checkpoint: checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
 _qcar_stage: "encoder pretrain -- teach the weights to recognize a qcar, single agent, before cooperation training"
 # Generalization pass 2026-09-13: pass 1 showed train loss falling steadily
 # (8.39->3.87) while validate loss (fp32-fixed, no longer NaN) climbed
 # 17.37->31.82 over 3 epochs on 15 held-out scenarios -- real overfitting,
 # not a precision artifact. Three changes below target it directly.
 _qcar_freeze_encoder_blocks: 8  # of 16 EfficientNet-b0 blocks + stem frozen
-root_dir: qcar_dataset/Inference/PretrainFront/train
-validate_dir: qcar_dataset/Inference/PretrainFront/validate
+root_dir: qcar_dataset/pipeline/datasets/PretrainFront/train
+validate_dir: qcar_dataset/pipeline/datasets/PretrainFront/validate
 test_dir: null
 yaml_parser: load_general_params
 train_params: {batch_size: 4, epoches: 20, eval_freq: 1, save_freq: 1, max_cav: 1}
