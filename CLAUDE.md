@@ -130,9 +130,10 @@ QCar CSI camera streams — lives on the `qcar-testbed-integration` branch inste
 a PR without carrying unrelated commits.
 
 Everything that isn't code (raw QCar recordings, calibration reports, exploratory notebooks, checkpoints/tensors
-used only for the physical demo) lives out of the framework's version control, in `HEAL-Concordia/` — nested inside
-this repo's root for convenience (so relative dataset paths like `qcar_dataset/Inference/...` in the `qcar_real`
-configs resolve via the `qcar_dataset -> HEAL-Concordia/data/qcar_dataset` symlink) but entirely `.gitignore`d and
-tracked by its own separate git history, never part of the upstream-facing diff. See `HEAL-Concordia/CLAUDE.md` for
-what's there and how it relates to this branch, and the Obsidian vault's `concordia/controller-project/` notes for
-the research context (session logs, roadmap, defense priorities) driving this work.
+used only for the physical demo) lives out of the framework's version control, in `qcar_testbed_integration/` — nested inside
+this repo's root for convenience (so relative dataset paths like `qcar_dataset/pipeline/...` in the `qcar_real`
+configs resolve via the `qcar_dataset -> qcar_testbed_integration/data/qcar_dataset` symlink) but entirely `.gitignore`d and
+tracked by its own separate git history, never part of the upstream-facing diff. See `qcar_testbed_integration/CLAUDE.md` for
+what's there and how it relates to this branch, and the Obsidian vault's `areas/concordia/projects/physical-cp-testbed/`
+notes for the research context (session logs, roadmap, defense priorities) driving this work — `controller-project/`
+is a separate, sibling thesis-proposal project, not this testbed.

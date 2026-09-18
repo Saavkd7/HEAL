@@ -28,7 +28,7 @@ configs actually reference) and `heal_reference/` (everything else, general
 framework material unrelated to QCar). See its own `README.md`.
 
 **Why nothing upstream is touched:** `main` is kept as a clean, rebasable
-diff against upstream on purpose (see `../HEAL-Concordia/CLAUDE.md`) — the
+diff against upstream on purpose (see `../qcar_testbed_integration/CLAUDE.md`) — the
 QCar integration is designed to be pure addition (new files, new yaml
 configs, monkeypatches applied only when a QCar script imports them), never
 an edit to vendored HEAL source. If you ever find yourself about to edit a

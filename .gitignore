@@ -174,9 +174,10 @@ checkpoints/*/
 !checkpoints/MANIFEST.md
 !checkpoints/README.md
 
-# HEAL-Concordia sibling project (QCar recordings, calibration, notebooks,
-# artifacts -- data only, no framework code), nested here so relative
-# dataset paths in qcar_real configs resolve locally. Not part of the
-# upstream-facing diff, has its own separate git history.
-/HEAL-Concordia/
+# qcar_testbed_integration sibling project (renamed 2026-09-18, was
+# HEAL-Concordia) -- QCar recordings, calibration, notebooks, artifacts --
+# data only, no framework code -- nested here so relative dataset paths in
+# qcar_real configs resolve locally. Not part of the upstream-facing diff,
+# has its own separate git history.
+/qcar_testbed_integration/
 /qcar_dataset

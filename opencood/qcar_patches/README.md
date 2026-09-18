@@ -57,7 +57,7 @@ unfilled.
 `qcar_dataset/pipeline/datasets/<split-name>/{train,validate,test}`, relative to the
 repo root, in the same per-frame layout HEAL's own OPV2V loader expects
 (`<frame_id>_camera0.png` + `<frame_id>.yaml`). That path is a symlink
-(`qcar_dataset -> HEAL-Concordia/data/qcar_dataset`) into `HEAL-Concordia/`,
+(`qcar_dataset -> qcar_testbed_integration/data/qcar_dataset`) into `qcar_testbed_integration/`,
 a `.gitignore`d directory nested at the repo root holding the QCar
 recordings, calibration reports, and conversion tooling that produce this
 layout — data only, no framework code, and not part of this repository's
