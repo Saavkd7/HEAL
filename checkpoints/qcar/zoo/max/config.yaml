@@ -36,7 +36,7 @@ fusion:
   core_method: intermediateheter
   dataset: opv2v
 heter:
-  assignment_path: opencood/logs/heter_modality_assign/qcar_real/qcar_coop_modality.json
+  assignment_path: qcar/modality_assign/qcar_coop_modality.json
   ego_modality: m2
   mapping_dict:
     m1: m2

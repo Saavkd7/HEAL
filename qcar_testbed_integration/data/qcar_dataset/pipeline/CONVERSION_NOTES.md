@@ -88,8 +88,8 @@ An earlier pipeline (`build_clean_dataset.py` + `to_opv2v_layout.py` ->
 `clean_dataset/`, `opv2v_layout/`, `opv2v_ready/`) fed a `camera_attfuse_qcar.yaml`
 config that was never actually trained (no matching run in `opencood/logs/`)
 and also fed `SmokeTestFront/`'s build (see table above). Removed 2026-09-18 as
-dead weight superseded by `build_coop_train_val_dataset.py` — see git history / the
-project's Obsidian vault (physical-cp-testbed notes) for the removed
+dead weight superseded by `build_coop_train_val_dataset.py` — see git history / 
+the project's research notes (kept outside this repo; ask the maintainer) for the removed
 version's own account of what was real vs assumed in that older layout.
 
 Later the same day, the whole directory (`Inference/`) was renamed to

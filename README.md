@@ -266,7 +266,7 @@ Take the DAIR-V2X dataset as an example, which consists of one vehicle and one R
 </div>
 
 ## QCar Real-Testbed Integration
-Camera-only HEAL (`camera_attfuse`) driven by live sensor data from Quanser QCar physical vehicles rather than the simulated datasets above. Lives in the standalone [`qcar/`](qcar/README.md) package, which imports `opencood` without modifying it.
+Camera-only HEAL on data recorded by Quanser QCar physical vehicles (Vicon ground truth, real calibration, occluding walls) instead of the simulated datasets above. The package [`qcar/`](qcar/README.md) holds training, evaluation, a model zoo of 10 HEAL fusion methods trained on QCar data, and a round-by-round cooperative replay notebook (`qcar_rounds.ipynb`). It imports `opencood` without modifying it. [`qcar_testbed_integration/`](qcar_testbed_integration/SCRIPTS.md) holds the physical-testbed side: recording tools, calibration, and the ROS-bag-to-dataset pipeline. **New to the project? Start at [`qcar/README.md`](qcar/README.md#start-here-from-the-cars-to-a-trained-model).**
 
 ## Benchmark Checkpoints
 We store our checkpoints files in [HEAL's Huggingface Hub](https://huggingface.co/yifanlu/HEAL/tree/main).

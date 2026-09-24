@@ -34,7 +34,7 @@ import torch
 from torch.utils.data import DataLoader
 
 # opencood is importable directly once `python setup.py develop` has been run
-# from the HEAL repo root (see its own CLAUDE.md) -- no path hack needed.
+# from the HEAL repo root (see the root README.md, Installation) -- no path hack needed.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "build", "cooperative"))
 
 import qcar.patches.patch_1cam_loader  # noqa: E402,F401

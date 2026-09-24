@@ -1,18 +1,37 @@
 # Every script in this repo — what it does, one place
 
-Two independent areas: the **dataset-building pipeline**
-(`data/qcar_dataset/pipeline/scripts/`) and the **calibration tools**
-(`calibration/calibration_Matries/tools/`). This file is the single index;
+Three areas, in the order a new recording flows through them: **getting data
+off the cars** (`data/qcar_onboard/_tools/`), the **dataset-building pipeline**
+(`data/qcar_dataset/pipeline/scripts/`), and the **calibration tools**
+(`calibration/calibration_Matries/tools/`). Training, evaluation and the model
+zoo are not here: they live in the HEAL repo's `qcar/` package (start at
+`qcar/README.md`). This file is the single index;
 deeper detail (every flag, internal function-by-function logic) lives in the
 files linked from each section — this page never duplicates that, only
 summarizes and points there.
+
+**Raw data is not in git.** The ROS bags, per-frame captures and built
+datasets (~27 GB) are kept by the lab, outside the repository. Ask the
+maintainer for access, and place them under `data/` as the READMEs below
+describe.
+
+---
+
+## 0. Getting data off the cars — `data/qcar_onboard/_tools/`
+
+Details: `data/qcar_onboard/README.md`.
+
+| script | what it does |
+|---|---|
+| `pull_qcar_bags.py` | Copies a car's recorded `.bag` files to this workstation over SSH (read-only on the car: probes plus a `tar` stream) and writes a `BAGS_MANIFEST.md` with the car's identity and the sha256 of what was pulled. Usage: `python3 pull_qcar_bags.py <car-ip>`; defaults in `_tools/conf.json`. |
+| `cross_check_vicon_labeling.py` | Checks whether the Vicon ego/target labeling bug documented in `bag_to_dataset_rosbags.py` affected the 9 cooperative trajectories (it did not, verified 2026-09-18). `--diagnostic` prints the raw distance table. |
 
 ---
 
 ## 1. Dataset pipeline — `data/qcar_dataset/pipeline/scripts/`
 
 Full flag reference: `data/qcar_dataset/pipeline/README.md`.
-Full internal-logic walkthrough: Obsidian vault, `14 GUIA` note.
+Full internal-logic walkthrough: `14 GUIA` in the project's research notes (kept outside this repo; ask the maintainer).
 Dataset-level reproducibility status: `data/qcar_dataset/pipeline/CONVERSION_NOTES.md`.
 
 ### `scripts/convert/`
@@ -60,6 +79,16 @@ real-data/real-code smoke-test build instead.
 | `visualize_boxes.py` | Draws predicted/ground-truth 3D boxes projected onto the real camera image, for visual sanity-checking of geometry (especially fisheye edge cases). |
 | `analyze_bev_visibility_mask.py` | Reverse-engineers how the BEV visibility mask (its original generator script was lost) was built, by independently recovering each camera's real FOV from its measured K/D and comparing it to the mask's own angular extent. |
 
+### `shared/evidence_through_wall/` — historical, does not run as-is
+
+`show_through_wall.py`, `show_all_three.py`, `show_bev_all_three.py`,
+`collage_honest.py` and `diagnose_coop_breakdown.py` produced the 2026-09-14
+"seeing through the wall" evidence images (kept locally, not in git). They
+predate the path clean-up: they hardcode the original workstation's paths and
+import from a `qcar_dataset/Inference` module that no longer exists. They are
+kept as a record of how that evidence was made. For new visualizations, use
+`scripts/visualize/visualize_boxes.py` or the HEAL repo's `qcar_rounds.ipynb`.
+
 ---
 
 ## 2. Calibration tools — `calibration/calibration_Matries/tools/`
@@ -70,8 +99,8 @@ Results/decisions from these tools: `calibration/calibration_Matries/REPORT.md`.
 |---|---|
 | `calib_web.py` | Live fisheye-calibration assistant, driven from a phone browser pointed at the workstation. Streams the QCar's camera feed and shows, live, which part of the lens' field of view is still unconstrained by checkerboard captures so far — replaces the old workflow of capturing blind and grading afterward. Usage: `python3 calib_web.py --car 192.168.1.198 --camera front`, then open `http://<workstation-ip>:8000` on a phone. Flags: `--car`, `--camera`, `--car-port` (55700), `--http-port` (8000), `--out` (save accepted views), `--cols`/`--rows` (checkerboard, 9x6), `--seed`/`--seed-state` (preload earlier good views). |
 | `verify_final_intrinsics.py` | Fits and independently verifies a car's front fisheye intrinsics (K, D) from raw checkerboard photos — full `cv2.fisheye.calibrate` with outlier rejection, checked against 6 quality gates. Car, pattern and every path come from `tools/conf.json`'s `verify_*` keys (flags `--views-dir`/`--initial`/`--new-capture`/`--report`/`--output` override them for one run; the original inputs were in this tool's own directory and are no longer on disk) — this is what got re-run 2026-09-17 against the 1554 raw photos to independently confirm `REPORT.md`'s numbers, not just read them. |
-| `build_qcar_pooling_map.py` | Builds a precomputed, static Lift-Splat pooling map (which world points fall into which BEV cell) for the QCar's cameras, in the project's x10-scaled world. **Not currently loaded by any active model code** — a prepared, verified, not-yet-activated optimization path. Full explanation: `POOLING_MAP.md` in this same folder. |
-| `build_pooling_groups.py` | Reorganizes a `.bin` from the tool above into a cell-grouped `.bin.groups` file, once, offline. Same "not activated yet" status as above — see `POOLING_MAP.md`. |
+| `build_qcar_pooling_map.py` | Builds a precomputed, static Lift-Splat pooling map (which world points fall into which BEV cell) for the QCar's cameras, in the project's x10-scaled world. **Not currently loaded by any active model code** — a prepared, verified, not-yet-activated optimization path. Needs an external QuantV2X checkout: set the `pool_*` paths in `tools/conf.json`. |
+| `build_pooling_groups.py` | Reorganizes a `.bin` from the tool above into a cell-grouped `.bin.groups` file, once, offline. Same "not activated yet" status as above. |
 | `car_frame_server.py` | Runs **on the QCar itself** (not the workstation) — keeps one CSI camera open for a whole session and serves fresh JPEG frames over a raw TCP socket on request, avoiding the slow camera-open overhead per capture. Deliberately opens only ONE camera (`QCarCameras.readAll()` would open all four, and one stalled secondary camera can freeze a front-camera calibration session). Usage: `sudo python3 car_frame_server.py --port 55700 --camera front`. Flags: `--port` (55700), `--camera` (front/left/right/back), `--quality` (JPEG quality, 80). |
 
 ---

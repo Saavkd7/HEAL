@@ -188,6 +188,8 @@ checkpoints/qcar/zoo/**/*.zip
 checkpoints/qcar/zoo/**/events.out.tfevents*
 # training/eval logs of each zoo run (the global *.log rule would drop them)
 !checkpoints/qcar/zoo/_logs/*.log
+# outputs of qcar/visualize.py when pointed at a zoo method
+checkpoints/qcar/zoo/**/visualize_*/
 
 # Jupyter autosaves (e.g. of qcar_rounds.ipynb)
 .ipynb_checkpoints/
@@ -201,4 +203,5 @@ checkpoints/qcar/zoo/**/events.out.tfevents*
 # AI-assistant instruction files stay local, at any level
 CLAUDE.md
 last_session.md
-/qcar_dataset
+# /qcar_dataset is a tracked relative symlink (-> qcar_testbed_integration/data/qcar_dataset)
+# that every qcar/configs dataset path goes through; do not ignore it.

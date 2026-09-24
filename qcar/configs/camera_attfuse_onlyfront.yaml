@@ -13,7 +13,7 @@ label_type: camera
 cav_lidar_range: &id001 [-51.2, -51.2, -3, 51.2, 51.2, 1]
 add_data_extension: [bev_visibility.png]
 heter:
-  assignment_path: opencood/logs/heter_modality_assign/qcar_real/qcar_2modality.json
+  assignment_path: qcar/modality_assign/qcar_2modality.json
   ego_modality: m2
   mapping_dict: {m1: m2, m2: m2, m3: m2, m4: m2}
   modality_setting:

@@ -97,7 +97,7 @@ FRONT_MOUNT_XYZ = (0.1930, 0.0, 0.0953)
 IMG_W, IMG_H = 640, 480
 
 # opencood is importable directly once `python setup.py develop` has been run
-# from the HEAL repo root (see its own CLAUDE.md) -- no path hack needed.
+# from the HEAL repo root (see the root README.md, Installation) -- no path hack needed.
 sys.path.insert(0, os.path.join(PIPELINE_ROOT, "scripts", "visualize"))
 from opencood.utils.box_utils import box_is_visible  # noqa: E402
 from visualize_boxes import box_corners_world, project  # noqa: E402

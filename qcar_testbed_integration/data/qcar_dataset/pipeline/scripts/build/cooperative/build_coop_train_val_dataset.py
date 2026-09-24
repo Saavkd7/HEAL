@@ -40,7 +40,7 @@ Pipeline, mirroring build_smoketest_dataset.py's conventions:
     than a fixed hand-confirmed pair fact, even though that geometry is
     known-incomplete (validated 2026-09-22: only reproduces 73.9%/79.1% of
     the previously-confirmed always-blocked pairs (1,3)/(2,4) -- see the
-    2026-09-22 "19 ANALISIS" vault note for the root cause, two real
+    2026-09-22 "19 ANALISIS" research note for the root cause, two real
     corridors where the measured wall segments don't reach). The historical
     fixed fact this replaced (agent "1" x Node 9, agent "2" x Node 11
     always blocked, regardless of FOV/range, a WALL_BLOCKED constant) has
@@ -439,7 +439,7 @@ def build_scene_n(frames_by_agent):
             # This is the ONLY wall check -- user-decided 2026-09-22: always
             # go by real geometry, never a fixed hand-confirmed pair fact,
             # even though walls.json is known-incomplete (see the
-            # 2026-09-22 19 ANALISIS vault note).
+            # 2026-09-22 19 ANALISIS research note).
             if wall_geometry.blocked_by_wall(
                     (agent_pose[aid]["x"], agent_pose[aid]["y"]), (raw[vid]["x"], raw[vid]["y"]), WALLS):
                 by_agent[aid] = False

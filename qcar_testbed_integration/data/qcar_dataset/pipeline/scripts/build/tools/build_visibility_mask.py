@@ -3,7 +3,7 @@ the per-car, egocentric BEV visibility cone HEAL's own box_is_visible()
 consults at training/inference time (opencood/utils/box_utils.py:1236).
 
 The ORIGINAL generator script that made the masks currently on disk did not
-survive (see the Obsidian vault note "2026-09-17 1815 - 09 ANALISIS -- Como
+survive (see the research note "2026-09-17 1815 - 09 ANALISIS -- Como
 se Construyo la Mascara de Visibilidad, Reconstruido desde la Geometria" for
 the full reverse-engineering trail). That analysis, by measuring the existing
 masks and independently recomputing a real camera FOV from calibration,
@@ -145,7 +145,7 @@ def real_fov_from_intrinsics(K, D, w=IMG_W, h=IMG_H):
     axis, recovered from the car's own verified fisheye K/D by undistorting
     the real image's left/right edge pixels -- same method used to first
     confirm the mask's angular width matches real calibration (see the
-    module docstring's referenced vault analysis)."""
+    module docstring's referenced analysis)."""
     pts = np.array([[[0, h / 2.0]], [[w, h / 2.0]]], dtype=np.float64)
     und = cv2.fisheye.undistortPoints(pts, K, D)
     left_deg = np.degrees(np.arctan(np.linalg.norm(und[0, 0])))

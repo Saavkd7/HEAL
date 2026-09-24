@@ -76,7 +76,7 @@ on each car) — assuming it's still there.
 The deleted folder was also the only evidence that the onboard conversion and
 the workstation conversion produce **different frame counts** for the same
 `.bag` (non-deterministic causal-bounded-wait sync) — that finding is now
-written up in the vault (`11 EVIDENCIA`) so it isn't lost, but the raw
+written up in `11 EVIDENCIA` (the project's research notes (kept outside this repo; ask the maintainer)) so it isn't lost, but the raw
 comparison data itself is gone.
 
 ## Tools (`_tools/`)
@@ -120,21 +120,22 @@ end: an earlier version of this script wrongly assumed each car
 self-labels "ego" vs. "peer", which produced a false "MISLABELED" verdict on
 every trajectory — the real architecture is one shared Vicon broadcast with
 fixed global roles for the whole session, not a per-car self/peer split) is
-in the script's own docstring and in the vault. Run with `--diagnostic` to
+in the script's own docstring. Run with `--diagnostic` to
 see the raw ego/target distance table that revealed the shared-broadcast
 architecture — that mode is for inspecting the broadcast claim itself, not a
 bug detector.
 
 ## Identifying a car
 
-A car's stable identity is its hostname/serial/MAC, not its IP (DHCP). No
-`BAGS_MANIFEST.md` exists yet for `.198`/`.158` — `pull_qcar_bags.py` would
-write one, but it's never been run live (see above). If an IP ever changes,
+A car's stable identity is its hostname/serial/MAC, not its IP (DHCP). `pull_qcar_bags.py` writes a
+`BAGS_MANIFEST.md` per car (hostname, serial, MAC, sha256 of what was pulled);
+the ones for the `Inference/` captures exist locally but are not in git, since
+they carry the lab cars' device identifiers. If an IP ever changes,
 rename the folder and record the mapping here.
 
 ## Full QCar/HEAL pipeline context
 
 For the end-to-end story of how these `.bag`s become a trainable dataset,
-see the vault:
-`wiki/areas/concordia/projects/physical-cp-testbed/notes/VER A TRAVES DE LA PARED/10 PIPELINE`
-and the evidence notes it links to (`11 EVIDENCIA`, `12 EVIDENCIA`).
+see `../../SCRIPTS.md` (every script, in pipeline order) and
+`../qcar_dataset/pipeline/README.md`; the narrative write-up is `10 PIPELINE`
+(with `11 EVIDENCIA`, `12 EVIDENCIA`) in the project's research notes (kept outside this repo; ask the maintainer).

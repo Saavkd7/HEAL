@@ -1,5 +1,5 @@
 """Reverse-engineers how visibility_masks/qcar527*_bev_visibility.png was
-built, since no generator script survived (see the 2026-09-17 vault note on
+built, since no generator script survived (see the 2026-09-17 research note on
 this). Tests the hypothesis that the mask's angular width was computed from
 each car's REAL measured fisheye intrinsics (K, D), not assumed/guessed --
 by independently recovering the real camera's horizontal FOV via

@@ -14,7 +14,7 @@ import torch
 from torch.utils.data import DataLoader
 
 # opencood is importable directly once `python setup.py develop` has been run
-# from the HEAL repo root (see its own CLAUDE.md) -- no path hack needed.
+# from the HEAL repo root (see the root README.md, Installation) -- no path hack needed.
 import qcar.patches.patch_1cam_loader  # noqa: F401
 import opencood.hypes_yaml.yaml_utils as yaml_utils
 from opencood.data_utils.datasets import build_dataset

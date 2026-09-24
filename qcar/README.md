@@ -13,6 +13,44 @@ vehicles, instead of the simulated OPV2V/V2XSet/V2X-Sim/DAIR-V2X-C datasets.
 `qcar/` is a standalone package that **imports** `opencood` and never edits
 it: `opencood/` on this branch is identical to upstream HEAL.
 
+## Start here: from the cars to a trained model
+
+Two directories, one project:
+- `qcar/` holds training, evaluation, the model zoo and the round-by-round
+  notebook.
+- `qcar_testbed_integration/` holds everything upstream of HEAL: getting
+  recordings off the cars, calibration, and turning ROS bags into a HEAL
+  dataset. Its index is `qcar_testbed_integration/SCRIPTS.md`.
+
+Every script takes its defaults from a `conf.json` next to it. Edit that file
+and run with no flags; a flag overrides it for one run.
+
+1. **Install.** Follow the root `README.md` Installation section (Python 3.8,
+   PyTorch 1.12 + CUDA 11.6, `python setup.py develop`, the IoU extension).
+   The camera encoder needs a CUDA GPU; 4 GB is enough for inference.
+2. **Get the data.** Raw bags and built datasets (~27 GB) are not in git. Ask
+   the maintainer and place them under `qcar_testbed_integration/data/`. The
+   configs reach them through the tracked symlink
+   `qcar_dataset -> qcar_testbed_integration/data/qcar_dataset`.
+3. **From recordings to a dataset** (only if you record new data): pull the
+   bags (`data/qcar_onboard/_tools/pull_qcar_bags.py`), split them into frames
+   (`scripts/convert/bag_to_dataset_rosbags.py`), then build the cooperative
+   dataset (`scripts/build/cooperative/build_coop_train_val_dataset.py`, which
+   writes `CoopFront/`). The order and every flag are in `SCRIPTS.md` and
+   `data/qcar_dataset/pipeline/README.md`; what is real and what is assumed
+   in each dataset is in `CONVERSION_NOTES.md`.
+4. **Train or evaluate one model:** `python qcar/train.py` /
+   `python qcar/eval.py` (defaults in `qcar/conf.json`).
+5. **Compare the HEAL fusion methods:** `python qcar/zoo.py train`, then
+   `python qcar/compare.py`. The current results are in
+   `checkpoints/qcar/zoo/COMPARISON.md`, and each method's config, logs and
+   metrics are in `checkpoints/qcar/zoo/<method>/`. The weights (`.pth`) are
+   not in git; download them from Hugging Face with
+   `hf download Saavkd7/qcar-heal-zoo --local-dir checkpoints/qcar/zoo`.
+6. **See cooperation happen:** open `qcar_rounds.ipynb` at the repo root. It
+   replays the validation trajectories round by round: cameras, BEV features,
+   boxes against GT, and cooperative vs. ego-only metrics.
+
 ## Layout
 
 | Path | Role |

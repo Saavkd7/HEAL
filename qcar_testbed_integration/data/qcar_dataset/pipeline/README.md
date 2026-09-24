@@ -2,7 +2,7 @@
 
 For *what* each dataset is and its reproducibility status, see `CONVERSION_NOTES.md`.
 For a walkthrough of every script's internal logic (functions, why it's built
-that way), see the Obsidian vault's `14 GUIA` note. **This file is the
+that way), see `14 GUIA` in the project's research notes (kept outside this repo; ask the maintainer). **This file is the
 practical "how do I run this" reference — every flag, what it defaults to,
 and why**, so someone new to the project (or a fresh clone on a different
 machine) can run the pipeline without editing any script.
@@ -159,6 +159,6 @@ its defaults live in `scripts/diagnose/conf.json`:
 
 None of these scripts add the HEAL repo root to `sys.path` — they rely on
 `opencood` being pip-installed in editable mode (`python setup.py develop`
-from the HEAL repo root, the first-run setup step documented in the HEAL
-repo's own `CLAUDE.md`). If `import opencood` fails, that setup step wasn't
+from the HEAL repo root, the first-run setup step in the root
+`README.md`'s Installation section). If `import opencood` fails, that setup step wasn't
 run, not a bug in these scripts.

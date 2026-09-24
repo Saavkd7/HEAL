@@ -6,7 +6,7 @@ the single hand-inspected frame:
 
 1. Would raising nms_thresh actually merge most Node-9 duplicate clusters?
 2. What would it cost elsewhere? The two QCars themselves get as close as
-   0.65m in this dataset (see qcar_testbed_integration/CLAUDE.md dataset caveats) --
+   0.65m in this dataset (see pipeline/CONVERSION_NOTES.md) --
    raising nms_thresh globally risks merging two genuinely distinct nearby
    detections into one, silently costing real recall.
 
@@ -28,7 +28,7 @@ import torch
 from torch.utils.data import DataLoader
 
 # opencood is importable directly once `python setup.py develop` has been run
-# from the HEAL repo root (see its own CLAUDE.md) -- no path hack needed.
+# from the HEAL repo root (see the root README.md, Installation) -- no path hack needed.
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "build", "cooperative"))
 
 import qcar.patches.patch_1cam_loader  # noqa: E402,F401
