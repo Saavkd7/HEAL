@@ -1,0 +1,43 @@
+{
+  "cameras": 1,
+  "camera_names": [
+    "front"
+  ],
+  "fov_deg": 160.0,
+  "focal_px_native": 229.1831180523293,
+  "native_image_wh": [
+    640,
+    480
+  ],
+  "model_image_wh": [
+    512,
+    384
+  ],
+  "resize_xy": [
+    0.8,
+    0.8
+  ],
+  "projection": "opencv_fisheye",
+  "intrinsics": "quality_reports/qcar_coop_runs/20260912_qcar52776_front_calib/qcar52776_front_intrinsics_verified.npz",
+  "extrinsics": "Cooperative_Perception/repos/QuantV2X/.cache/calib/qcar_manual_extrinsics.npz",
+  "world_scale": 10.0,
+  "camera_height_m": 1.31,
+  "camera_offset_m": 1.0,
+  "z_bound_applied": true,
+  "shape": [
+    1,
+    1,
+    48,
+    48,
+    64
+  ],
+  "dtype": "int32",
+  "valid_points": 113743,
+  "total_points": 147456,
+  "bev_shape": [
+    256,
+    256
+  ],
+  "warning": "measured fisheye intrinsics and supplied camera-to-vehicle extrinsics",
+  "layout": "N,D,H,W; value=y*bev_width+x; -1 means outside BEV"
+}

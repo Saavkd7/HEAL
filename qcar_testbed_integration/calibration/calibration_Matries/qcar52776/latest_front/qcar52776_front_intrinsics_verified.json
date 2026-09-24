@@ -1,0 +1,96 @@
+{
+  "car": "qcar-52776",
+  "camera": "front",
+  "images_examined": 86,
+  "views_detected": 83,
+  "selected_model": "full_k1_k4",
+  "candidates": [
+    {
+      "name": "full_k1_k4",
+      "views_used": 83,
+      "rms_px": 0.24624875889586653,
+      "median_view_error_px": 0.18057176106867023,
+      "p95_view_error_px": 0.42666608683968416,
+      "max_view_error_px": 0.8658752827647139,
+      "outlier_cutoff_px": 1.25,
+      "coverage_fraction_xy": [
+        0.9710011869668961,
+        0.8972173829873403
+      ],
+      "fold_angle_deg": 90.0,
+      "K": [
+        [
+          309.7886392277122,
+          0.0,
+          323.4473914607879
+        ],
+        [
+          0.0,
+          308.55918811547855,
+          230.0812227083957
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        -0.044058045205220324,
+        0.022184750766448866,
+        -0.01923419532883359,
+        0.004556390028765895
+      ],
+      "point_holdout_median_px": 0.1956284837568077,
+      "point_holdout_p95_px": 0.4296950951839667
+    },
+    {
+      "name": "fixed_k3_k4",
+      "views_used": 83,
+      "rms_px": 0.24738989242517026,
+      "median_view_error_px": 0.1802033456577123,
+      "p95_view_error_px": 0.4363684510818506,
+      "max_view_error_px": 0.8667101573222096,
+      "outlier_cutoff_px": 1.25,
+      "coverage_fraction_xy": [
+        0.9710011869668961,
+        0.8972173829873403
+      ],
+      "fold_angle_deg": 90.0,
+      "K": [
+        [
+          309.63628904559334,
+          0.0,
+          323.52872317646586
+        ],
+        [
+          0.0,
+          308.4086186225701,
+          230.1142031507604
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "D": [
+        -0.029692092753313852,
+        -0.005135488506922094,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "gates": {
+    "views_at_least_40": true,
+    "coverage_x_at_least_70pct": true,
+    "coverage_y_at_least_70pct": true,
+    "rms_below_0_5px": true,
+    "monotonic_to_80deg": true,
+    "point_holdout_p95_below_2px": true
+  },
+  "all_gates_pass": true,
+  "safe_for_heal_geometry_trial": true,
+  "note": "Front camera only; three-camera HEAL still needs left/right calibration."
+}

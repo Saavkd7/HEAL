@@ -1,0 +1,18 @@
+{
+  "_comment": "THE defaults for bag_to_dataset_rosbags.py -- the script hardcodes none of these. Edit this file and run with NO flags. A CLI flag is optional and overrides the matching key for that one run only; the script never writes this file. Relative paths are resolved against the qcar_testbed_integration/ root. duration_sec: null = convert the whole bag.",
+  "bag": "data/qcar_onboard/Training/ExperimentNo1/192.168.1.198/bags/MovingFourCameraVicon_Node3Via1To13_00/MovingFourCameraVicon_Node3Via1To13_00.bag",
+  "output": "data/qcar_onboard/Training/ExperimentNo1/192.168.1.198/dataset/converted_MovingFourCameraVicon_Node3Via1To13_00",
+  "overwrite": false,
+  "add": false,
+  "fps": 10.0,
+  "wait_sec": 0.05,
+  "camera_tolerance": 0.04,
+  "vicon_max_age": 0.1,
+  "vicon_pose_key": "auto",
+  "trim_start_sec": 0.0,
+  "duration_sec": null,
+  "trim_to_motion": false,
+  "motion_threshold_m": 0.02,
+  "motion_confirm_samples": 3,
+  "png_compression_level": 0
+}

@@ -192,10 +192,13 @@ checkpoints/qcar/zoo/**/events.out.tfevents*
 # Jupyter autosaves (e.g. of qcar_rounds.ipynb)
 .ipynb_checkpoints/
 
-# qcar_testbed_integration sibling project (renamed 2026-09-18, was
-# HEAL-Concordia) -- QCar recordings, calibration, notebooks, artifacts --
-# data only, no framework code -- nested here so relative dataset paths in
-# qcar/configs resolve locally. Not part of the upstream-facing diff,
-# has its own separate git history.
-/qcar_testbed_integration/
+# qcar_testbed_integration/ -- the physical QCar testbed (recording tools,
+# dataset-building pipeline, calibration). Its code, configs and docs ARE
+# tracked on this branch; its own .gitignore whitelists them and keeps out the
+# raw data (~27 GB), tensors and result images. Nested here so relative
+# dataset paths in qcar/configs resolve locally.
+
+# AI-assistant instruction files stay local, at any level
+CLAUDE.md
+last_session.md
 /qcar_dataset

@@ -1,0 +1,29 @@
+{
+  "_comment": "THE defaults for build_coop_train_val_dataset.py and build_inference.py -- the scripts hardcode none of these. Edit this file and run a script with NO flags. A CLI flag is optional and overrides the matching key for that one run only; no script ever writes this file. Relative paths are resolved against the qcar_testbed_integration/ root.",
+  "calib_root": "calibration/calibration_Matries",
+  "onboard_root": "data/qcar_onboard/Training/ExperimentNo1",
+  "out_dir": "data/qcar_dataset/pipeline/datasets/CoopFront",
+  "inference_out_dir": "data/qcar_dataset/pipeline/inference_data/InferenceFront",
+  "vis_masks_dir": "data/qcar_dataset/pipeline/shared/visibility_masks",
+  "walls_json": "data/qcar_dataset/pipeline/shared/walls.json",
+  "val_indices": "",
+  "agents": "1,2",
+  "pair_tolerance_sec": 0.04,
+  "max_trajectories": null,
+  "static_targets": {
+    "3": {
+      "x": -0.8286,
+      "y": 1.3477,
+      "z": 0.1226,
+      "yaw_rad": -1.5716,
+      "node": "Node9"
+    },
+    "4": {
+      "x": 0.4242,
+      "y": 0.5084,
+      "z": 0.1287,
+      "yaw_rad": 3.1136,
+      "node": "Node11"
+    }
+  }
+}

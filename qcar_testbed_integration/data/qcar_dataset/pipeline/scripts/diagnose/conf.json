@@ -1,0 +1,7 @@
+{
+  "_comment": "THE defaults for find_nan_frame.py (the other diagnose_*.py scripts take --model_dir and read CoopFront settings from scripts/build/cooperative/conf.json). Edit this file and run with NO flags; a CLI flag only overrides a key for one run. Relative paths are resolved against the qcar_testbed_integration/ root; hypes and checkpoint_glob are relative to heal_root.",
+  "heal_root": "..",
+  "hypes": "qcar/configs/camera_attfuse_pretrain.yaml",
+  "checkpoint_glob": "opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_pretrain_*",
+  "checkpoint_name": "net_epoch_bestval_at1.pth"
+}

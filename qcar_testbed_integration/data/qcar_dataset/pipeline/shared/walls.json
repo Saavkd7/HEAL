@@ -1,0 +1,10 @@
+{
+  "_comment": "Real physical wall segments in the lab, Vicon world frame (real metres, unscaled -- same frame as STATIC_TARGETS x/y in build_coop_train_val_dataset.py, NOT the x10-scaled OPV2V coordinates). Measured from media/Walls_Layout+Scenario1.jpeg, user-confirmed 2026-09-22. Add more walls by appending to the list below -- no code change needed, wall_geometry.py reads every entry.",
+  "walls": [
+    {"id": "wall1", "a": [-1.97, -0.099], "b": [-1.97, -1.099]},
+    {"id": "wall2", "a": [-0.97, -0.053], "b": [-1.97, -0.053]},
+    {"id": "wall3", "a": [-0.989, 0.697], "b": [-1.989, 0.697]},
+    {"id": "wall4", "a": [-0.2945, -0.0745], "b": [0.7055, -0.0745]},
+    {"id": "wall5", "a": [-0.275, 1.734], "b": [-0.275, 0.734]}
+  ]
+}

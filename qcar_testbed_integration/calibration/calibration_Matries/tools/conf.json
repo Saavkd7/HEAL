@@ -1,0 +1,66 @@
+{
+  "_comment": "THE defaults for every script in this folder -- the scripts hardcode none of these. Edit this file and run a script with NO flags. A CLI flag is optional and overrides the matching key for that one run only; no script ever writes this file. pool_quantv2x_repo / pool_python_paths / pool_config point at the sibling Concordia/Cooperative_Perception checkout (machine-specific, edit per machine). Relative paths are resolved against the qcar_testbed_integration/ root. The pool_*/pooling_groups_* defaults reproduce the real qcar52775 front trial map in qcar52775/latest_front/. calib_out may use {car} and {camera}. calib_seed/calib_seed_state: null = start a fresh session (no earlier views to preload). Keys are prefixed by the script that owns them:",
+  "_owners": {
+    "pooling_groups_*": "build_pooling_groups.py",
+    "pool_*": "build_qcar_pooling_map.py",
+    "calib_*": "calib_web.py",
+    "frame_server_*": "car_frame_server.py (runs ON the QCar itself, not this workstation)",
+    "verify_*": "verify_final_intrinsics.py"
+  },
+  "pooling_groups_map": "calibration/calibration_Matries/qcar52775/latest_front/qcar52775_front_x10_opencv_fisheye_trial.bin",
+  "pooling_groups_output": "calibration/calibration_Matries/qcar52775/latest_front/qcar52775_front_x10_opencv_fisheye_trial.bin.groups",
+  "pool_quantv2x_repo": "/mnt/mainvolume/Backup/Projects/Concordia/Cooperative_Perception/repos/QuantV2X",
+  "pool_python_paths": [
+    "/mnt/mainvolume/Backup/Projects/Concordia/Cooperative_Perception/bench/coop_fusion"
+  ],
+  "pool_config": "/mnt/mainvolume/Backup/Projects/Concordia/Cooperative_Perception/repos/QuantV2X/.cache/checkpoints/heal_camera_attfuse/config.yaml",
+  "pool_output": "calibration/calibration_Matries/qcar52775/latest_front/qcar52775_front_x10_opencv_fisheye_trial.bin",
+  "pool_cameras": [
+    "front"
+  ],
+  "pool_fov": 160.0,
+  "pool_projection": "opencv_fisheye",
+  "pool_intrinsics": "calibration/calibration_Matries/qcar52775/latest_front/qcar52775_front_intrinsics_verified.npz",
+  "pool_extrinsics": "calibration/calibration_Matries/shared/qcar_manual_extrinsics.npz",
+  "pool_scale": 10.0,
+  "pool_height": 0.131,
+  "pool_offset": 0.1,
+  "pool_native": "640x480",
+  "pool_ignore_z_bound": false,
+  "calib_car": "192.168.1.198",
+  "calib_camera": "front",
+  "calib_car_port": 55700,
+  "calib_http_port": 8000,
+  "calib_out": "calibration/calibration_Matries/tools/captures_{car}_{camera}",
+  "calib_cols": 9,
+  "calib_rows": 6,
+  "calib_seed": null,
+  "calib_seed_state": null,
+  "calib_capture_interval": 0.75,
+  "calib_novelty_px": 4.0,
+  "calib_square_size": 0.024,
+  "calib_initial_intrinsics": "calibration/calibration_Matries/qcar52775/latest_front/qcar52775_front_intrinsics_verified.npz",
+  "calib_extrinsics": "calibration/calibration_Matries/shared/qcar_manual_extrinsics.npz",
+  "frame_server_python_paths": [
+    "/home/nvidia/Collection/quanser_python",
+    "/home/nvidia/Documents/python"
+  ],
+  "frame_server_port": 55700,
+  "frame_server_camera": "front",
+  "frame_server_quality": 80,
+  "verify_car_name": "qcar-52775",
+  "verify_pattern": [
+    9,
+    6
+  ],
+  "verify_square_m": 0.024,
+  "verify_image_size": [
+    640,
+    480
+  ],
+  "verify_views_dir": "calibration/calibration_Matries/tools/front_all",
+  "verify_initial": "calibration/calibration_Matries/tools/qcar52775_front_intrinsics.npz",
+  "verify_new_capture": "calibration/calibration_Matries/tools/live_capture_after_battery_20260912T012012Z",
+  "verify_report": "calibration/calibration_Matries/tools/qcar52775_front_intrinsics_verified.json",
+  "verify_output": "calibration/calibration_Matries/tools/qcar52775_front_intrinsics_verified.npz"
+}

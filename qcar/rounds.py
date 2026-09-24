@@ -28,7 +28,9 @@ Agents are encoded one at a time, as each car would on its own hardware. That
 differs from HEAL's batched forward() by ~5e-5 relative at the encoder output:
 LSS's cumsum-trick pooling (QuickCumsum) rounds differently when other agents'
 points share the batch (an exact segment sum brings it to 1.9e-7), plus TF32
-convolutions. AP on the full validation split is identical to compare.py.
+convolutions. On the full validation split, AP@0.2/0.5 (coop and ego-only)
+matches compare.py's COMPARISON.json to 3 decimals for 7 of the 9 methods, and
+within 0.003 for max and where2comm (verified 2026-09-24).
 
 Everything is set in conf.json (rounds_* keys, plus compare_zoo_dir); the
 notebook qcar_rounds.ipynb at the repo root drives this module. Only camera

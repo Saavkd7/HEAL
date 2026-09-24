@@ -1,0 +1,15 @@
+{
+  "_comment": "THE defaults for build_visibility_mask.py and build_smoketest_dev_split.py -- the scripts hardcode none of these. Edit this file and run with NO flags. A CLI flag is optional and overrides the matching key for that one run only. Relative paths are resolved against the qcar_testbed_integration/ root. smoketest_* keys belong to build_smoketest_dev_split.py (it refuses to overwrite an existing destination).",
+  "calib_root": "calibration/calibration_Matries",
+  "out_dir": "data/qcar_dataset/pipeline/shared/visibility_masks",
+  "cars": "52775,52776",
+  "overwrite": false,
+  "coop_yaml": "../qcar/configs/camera_attfuse_coop.yaml",
+  "smoketest_source": "data/qcar_dataset/pipeline/datasets/Smokes/SmokeTestFront",
+  "smoketest_destination": "data/qcar_dataset/pipeline/datasets/Smokes/SmokeTestFront_dev",
+  "smoketest_scenario": "qcar_2026_09_11_node3via1to8_x_node15via6to8",
+  "smoketest_cav_ids": [
+    "1",
+    "2"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "_comment": "THE defaults for the scripts in scripts/visualize/ -- the scripts hardcode none of these. Edit this file and run with NO flags. A CLI flag is optional and overrides the matching key for that one run only. Relative paths are resolved against the qcar_testbed_integration/ root. visualize_boxes.py takes its inputs as required CLI args and reads nothing from here.",
+  "calib_root": "calibration/calibration_Matries",
+  "masks_root": "data/qcar_dataset/pipeline/shared/visibility_masks",
+  "cars": [
+    "52775",
+    "52776"
+  ]
+}

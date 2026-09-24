@@ -103,9 +103,13 @@ against your cwd.
 repo root, in the per-frame layout HEAL's OPV2V loader expects
 (`<frame_id>_camera0.png` + `<frame_id>.yaml`). That path is a symlink
 (`qcar_dataset -> qcar_testbed_integration/data/qcar_dataset`) into
-`qcar_testbed_integration/`, a `.gitignore`d directory nested at the repo root
-holding the QCar recordings, calibration and conversion tooling that produce
-this layout. It is data only (no framework code) and has its own git history.
+`qcar_testbed_integration/`, the physical-testbed directory nested at the repo
+root. Its code is tracked on this branch: recording tools
+(`data/qcar_onboard/_tools/`), the bag-to-dataset pipeline
+(`data/qcar_dataset/pipeline/`), calibration tools and verified intrinsics, and
+notebooks. Start at its `SCRIPTS.md`. The raw data it works on (ROS bags,
+per-frame captures, built datasets, ~27 GB) is not in git; its `.gitignore`
+whitelists what is.
 
 **Checkpoints:** `checkpoints/` at the repo root; `checkpoints/qcar/` holds
 the one checkpoint the configs reference (see its `README.md`).

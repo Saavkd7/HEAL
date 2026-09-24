@@ -1,0 +1,32 @@
+{
+  "_comment": "THE defaults for the scripts in this folder -- the scripts hardcode none of these. Edit this file and run with NO args. A CLI flag/positional is optional and overrides the matching key for that one run only; no script ever writes this file. Relative paths are resolved against the qcar_testbed_integration/ root. password: null = use SSH keys (never store a real password here). Keys prefixed cross_check_* belong to cross_check_vicon_labeling.py, the rest to pull_qcar_bags.py.",
+  "host": "192.168.1.198",
+  "user": "nvidia",
+  "password": null,
+  "remote_dir": "/home/nvidia/Collection/qcar_bags",
+  "local_root": "data/qcar_onboard/Training/ExperimentNo1",
+  "local_label": "bags",
+  "manifest_only": false,
+  "cross_check_onboard_root": "data/qcar_onboard/Training/ExperimentNo1",
+  "cross_check_vicon_topic": "/qcar/vicon",
+  "cross_check_cars": {
+    "198": {
+      "prefix": "MovingFourCameraVicon_Node3Via1To13_"
+    },
+    "158": {
+      "prefix": "MovingFourCameraVicon_Node15Via6To8_"
+    }
+  },
+  "cross_check_trajectories": [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08"
+  ],
+  "cross_check_tolerance_sec": 0.05
+}

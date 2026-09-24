@@ -1,0 +1,48 @@
+# What of qcar_testbed_integration/ is versioned in the HEAL repo
+# (qcar-testbed-integration branch): the physical-testbed code, configs, docs and
+# small calibration/label files -- everything needed to go from the real QCars to
+# a HEAL dataset. Never the raw data (ROS bags, per-frame folders, built datasets:
+# ~27 GB), tensors, result images, or AI-assistant files.
+#
+# Whitelist: ignore everything at each level, then re-include what is tracked
+# (git cannot re-include a file whose parent directory is excluded).
+# Until 2026-09-24 this folder had its own separate git (10 files); that history is
+# backed up at ../../qcar_testbed_integration_git_backup (outside the repo).
+
+/*
+!/.gitignore
+!/SCRIPTS.md
+!/media/
+!/notebooks/
+
+!/artifacts/
+/artifacts/*
+!/artifacts/README.md
+
+# data/: only the tools and the dataset-building pipeline, never the data itself
+!/data/
+/data/*
+!/data/qcar_onboard/
+/data/qcar_onboard/*
+!/data/qcar_onboard/README.md
+!/data/qcar_onboard/_tools/
+!/data/qcar_dataset/
+/data/qcar_dataset/*
+!/data/qcar_dataset/pipeline/
+/data/qcar_dataset/pipeline/datasets/
+# the root .gitignore's Python-template build/ rule would hide the build scripts
+!/data/qcar_dataset/pipeline/scripts/build/
+/data/qcar_dataset/pipeline/shared/evidence_through_wall/*.png
+
+# calibration/: tools, report, checksums and the verified intrinsics/extrinsics;
+# not the raw fisheye trial blobs (*.bin, ~0.5 MB each)
+!/calibration/
+/calibration/*
+!/calibration/calibration_Matries/
+/calibration/calibration_Matries/**/*.bin
+/calibration/calibration_Matries/**/*.bin.groups
+
+.ipynb_checkpoints/
+__pycache__/
+CLAUDE.md
+last_session.md

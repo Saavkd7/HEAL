@@ -1,0 +1,9 @@
+{
+  "_comment": "THE defaults for build_pretrain_manifest.py, build_pretrain_labels.py, build_pretrain_dataset.py (run in that order) -- the scripts hardcode none of these. Edit this file and run a script with NO flags. A CLI flag is optional and overrides the matching key for that one run only. Relative paths are resolved against the qcar_testbed_integration/ root. src_root is external media that isn't always mounted -- see CLAUDE.md.",
+  "src_root": "/media/saavkd7/C4D26282D2627896/Concordia_QCar_Dataset/Scenarios",
+  "calib_root": "calibration/calibration_Matries",
+  "out_dir": "data/qcar_dataset/pipeline/datasets/PretrainFront",
+  "manifest_json": "data/qcar_dataset/pipeline/shared/pretrain_manifest.json",
+  "labels_json": "data/qcar_dataset/pipeline/shared/pretrain_labels.json",
+  "ego_vis_mask": "data/qcar_dataset/pipeline/shared/visibility_masks/qcar52775_bev_visibility.png"
+}
