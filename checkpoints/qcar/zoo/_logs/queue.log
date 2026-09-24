@@ -1,0 +1,30 @@
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/att.yaml > checkpoints/qcar/zoo/_logs/att.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_att_2026_09_23_18_22_17 --split validate > checkpoints/qcar/zoo/_logs/att.log
+FAILED eval att -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/att.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/max.yaml > checkpoints/qcar/zoo/_logs/max.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_max_2026_09_23_19_31_32 --split validate > checkpoints/qcar/zoo/_logs/max.log
+FAILED eval max -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/max.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/disconet.yaml > checkpoints/qcar/zoo/_logs/disconet.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_disconet_2026_09_23_20_35_25 --split validate > checkpoints/qcar/zoo/_logs/disconet.log
+FAILED eval disconet -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/disconet.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/v2xvit.yaml > checkpoints/qcar/zoo/_logs/v2xvit.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_v2xvit_2026_09_23_21_40_39 --split validate > checkpoints/qcar/zoo/_logs/v2xvit.log
+FAILED eval v2xvit -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/v2xvit.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/v2vnet.yaml > checkpoints/qcar/zoo/_logs/v2vnet.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_v2vnet_2026_09_23_23_09_21 --split validate > checkpoints/qcar/zoo/_logs/v2vnet.log
+FAILED eval v2vnet -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/v2vnet.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/cobevt.yaml > checkpoints/qcar/zoo/_logs/cobevt.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_cobevt_2026_09_24_00_28_18 --split validate > checkpoints/qcar/zoo/_logs/cobevt.log
+FAILED eval cobevt -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/cobevt.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/where2comm.yaml > checkpoints/qcar/zoo/_logs/where2comm.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_where2comm_2026_09_24_01_37_48 --split validate > checkpoints/qcar/zoo/_logs/where2comm.log
+FAILED eval where2comm -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/where2comm.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/who2com.yaml > checkpoints/qcar/zoo/_logs/who2com.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24 --split validate > checkpoints/qcar/zoo/_logs/who2com.log
+FAILED eval who2com -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/who2com.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/coalign.yaml --no_amp > checkpoints/qcar/zoo/_logs/coalign.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_coalign_2026_09_24_03_55_22 --split validate > checkpoints/qcar/zoo/_logs/coalign.log
+FAILED eval coalign -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/coalign.log; continuing
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/pyramid.yaml > checkpoints/qcar/zoo/_logs/pyramid.log
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_pyramid_2026_09_24_05_15_25 --split validate > checkpoints/qcar/zoo/_logs/pyramid.log
+FAILED eval pyramid -- see /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/zoo/_logs/pyramid.log; continuing

@@ -124,15 +124,20 @@ merge_final` then stitches the per-type encoders onto the base for a single coll
 ## QCar real-testbed integration (separate branch)
 
 `main` is kept as a clean diff against `upstream` (yifanlu0227/HEAL) on purpose, so it can be rebased/synced and any
-eventual contribution has an honest history. The Concordia QCar physical-testbed integration — camera_attfuse
-configs for real sensor data, a depth-balanced BCE loss, and train/eval/visualize patches for driving HEAL on live
-QCar CSI camera streams — lives on the `qcar-testbed-integration` branch instead of `main`, so it can mature toward
-a PR without carrying unrelated commits.
+eventual contribution has an honest history. The Concordia QCar physical-testbed integration lives on the
+`qcar-testbed-integration` branch instead of `main`, so it can mature toward a PR without carrying unrelated commits.
+
+On that branch it is a standalone top-level package, `qcar/` (train/eval/visualize, dataset monkeypatches as
+plugins, a depth-balanced BCE loss, `qcar/configs/*.yaml`), that imports `opencood` and never edits it —
+`opencood/` stays identical to upstream. `qcar/registry.py` resolves `model`/`loss` `core_method` from any package,
+and `qcar/conf.json` holds every script default; module choice follows CLI flag > yaml `_qcar_*` keys > conf.json.
+See `qcar/README.md`. If making QCar work seems to require editing `opencood/`, write a plugin in `qcar/patches/`
+instead.
 
 Everything that isn't code (raw QCar recordings, calibration reports, exploratory notebooks, checkpoints/tensors
 used only for the physical demo) lives out of the framework's version control, in `qcar_testbed_integration/` — nested inside
-this repo's root for convenience (so relative dataset paths like `qcar_dataset/pipeline/...` in the `qcar_real`
-configs resolve via the `qcar_dataset -> qcar_testbed_integration/data/qcar_dataset` symlink) but entirely `.gitignore`d and
+this repo's root for convenience (so relative dataset paths like `qcar_dataset/pipeline/...` in the `qcar/configs/`
+yamls resolve via the `qcar_dataset -> qcar_testbed_integration/data/qcar_dataset` symlink) but entirely `.gitignore`d and
 tracked by its own separate git history, never part of the upstream-facing diff. See `qcar_testbed_integration/CLAUDE.md` for
 what's there and how it relates to this branch, and the Obsidian vault's `areas/concordia/projects/physical-cp-testbed/`
 notes for the research context (session logs, roadmap, defense priorities) driving this work — `controller-project/`

@@ -1,0 +1,241 @@
+== att
+[patch_1cam_loader] OPV2VBaseDataset.find_camera_files -> 1-camera (front only)
+[patch_real_extrinsic] OPV2VBaseDataset.get_ext_int -> real, data-refined camera-to-vehicle geometry (was HEAL's CARLA/UE4 mirror)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 13
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 383, "center_err_cm_median": 3.6910089559788144, "center_err_cm_p90": 7.385775356250608, "bias_cm": [0.7071085138047022, -0.5166723437159865], "yaw_err_deg_median": 4.094575464017584, "length_ratio_median": 1.0027344226837158, "width_ratio_median": 0.9938406944274902, "frac_iou_ge_0.5": 0.6292428198433421}, "ego": {"n": 257, "center_err_cm_median": 3.09567745935571, "center_err_cm_p90": 6.602412619843883, "bias_cm": [0.26787107092861073, -0.4628452496305978], "yaw_err_deg_median": 3.002469196867565, "length_ratio_median": 1.0007877349853516, "width_ratio_median": 0.994779109954834, "frac_iou_ge_0.5": 0.8521400778210116}, "peer_only": {"n": 126, "center_err_cm_median": 5.174969428906582, "center_err_cm_p90": 8.036529927254637, "bias_cm": [1.603013456813873, -0.6264625276838031], "yaw_err_deg_median": 86.18699475880518, "length_ratio_median": 1.0063256621360779, "width_ratio_median": 0.9914016127586365, "frac_iou_ge_0.5": 0.1746031746031746}, "ap_best": {"0.2": 0.8250416154621432, "0.5": 0.451048718367199}, "ap_last_epoch": {"0.2": 0.8194258170494427, "0.5": 0.4401066759163848, "epoch": 15}}
+== max
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 405, "center_err_cm_median": 4.100136646771373, "center_err_cm_p90": 7.350207756811347, "bias_cm": [-0.49776288462273865, -1.1445326617470495], "yaw_err_deg_median": 4.827818583218798, "length_ratio_median": 0.9906312227249146, "width_ratio_median": 0.996446967124939, "frac_iou_ge_0.5": 0.7283950617283951}, "ego": {"n": 327, "center_err_cm_median": 4.0353740649645475, "center_err_cm_p90": 7.112955777752242, "bias_cm": [-0.47530187197052376, -1.3570345272893936], "yaw_err_deg_median": 4.0542723389581745, "length_ratio_median": 0.9927963018417358, "width_ratio_median": 0.9959019422531128, "frac_iou_ge_0.5": 0.8165137614678899}, "peer_only": {"n": 78, "center_err_cm_median": 4.170127419329722, "center_err_cm_p90": 8.604732367866587, "bias_cm": [-0.5919263607416397, -0.2536594562041454], "yaw_err_deg_median": 81.24675308308082, "length_ratio_median": 0.9798567593097687, "width_ratio_median": 1.0020329356193542, "frac_iou_ge_0.5": 0.358974358974359}, "ap_best": {"0.2": 0.8746731051359604, "0.5": 0.4871278694106227}, "ap_last_epoch": {"0.2": 0.8746731051359604, "0.5": 0.4871278694106227, "epoch": 15}}
+== disconet
+[heal_disco_fuse] registered opencood.models.fuse_modules.disco_fuse (PixelWeightLayer)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic', 'qcar.patches.heal_disco_fuse']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 6
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 392, "center_err_cm_median": 3.318055087328562, "center_err_cm_p90": 6.964969409507344, "bias_cm": [1.5630148054689776, -0.9825434600364189], "yaw_err_deg_median": 2.274511960838609, "length_ratio_median": 1.0252230763435364, "width_ratio_median": 0.9891268610954285, "frac_iou_ge_0.5": 0.8596938775510204}, "ego": {"n": 341, "center_err_cm_median": 3.156958702701668, "center_err_cm_p90": 6.653490088380626, "bias_cm": [1.6586881028242475, -0.9948351083438067], "yaw_err_deg_median": 1.9445791892515483, "length_ratio_median": 1.0252147912979126, "width_ratio_median": 0.988387405872345, "frac_iou_ge_0.5": 0.9384164222873901}, "peer_only": {"n": 51, "center_err_cm_median": 3.8675504867397903, "center_err_cm_p90": 7.844485070105062, "bias_cm": [0.9233168760935466, -0.9003581252752566], "yaw_err_deg_median": 86.56587218225496, "length_ratio_median": 1.0257915258407593, "width_ratio_median": 1.0016847848892212, "frac_iou_ge_0.5": 0.3333333333333333}, "ap_best": {"0.2": 0.8602246515825168, "0.5": 0.710727675120939}, "ap_last_epoch": {"0.2": 0.913087795008533, "0.5": 0.7354340153548296, "epoch": 15}}
+== where2comm
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 8
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 405, "center_err_cm_median": 3.2916141218046584, "center_err_cm_p90": 7.33022272348632, "bias_cm": [-0.5200647601374874, -2.2608904886392898], "yaw_err_deg_median": 1.3440992663884692, "length_ratio_median": 0.9630547761917114, "width_ratio_median": 1.0027835369110107, "frac_iou_ge_0.5": 0.8864197530864197}, "ego": {"n": 293, "center_err_cm_median": 3.295793458268554, "center_err_cm_p90": 7.317677549822525, "bias_cm": [-0.6870268127617168, -2.773792274270855], "yaw_err_deg_median": 1.3186636419193418, "length_ratio_median": 0.9640364646911621, "width_ratio_median": 0.9966009259223938, "frac_iou_ge_0.5": 0.8839590443686007}, "peer_only": {"n": 112, "center_err_cm_median": 3.234089499330877, "center_err_cm_p90": 8.002589512450925, "bias_cm": [-0.08328010461160115, -0.9191027815852847], "yaw_err_deg_median": 1.369610022938467, "length_ratio_median": 0.9616218507289886, "width_ratio_median": 1.017723023891449, "frac_iou_ge_0.5": 0.8928571428571429}, "ap_best": {"0.2": 0.8872642910614034, "0.5": 0.7232383504139756}, "ap_last_epoch": {"0.2": 0.8661919395812756, "0.5": 0.802510610936722, "epoch": 15}}
+== cobevt
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 10
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 409, "center_err_cm_median": 5.309140747265316, "center_err_cm_p90": 9.627716497347787, "bias_cm": [1.3252903757876464, -0.70647085645671], "yaw_err_deg_median": 2.722294837113642, "length_ratio_median": 1.0056958198547363, "width_ratio_median": 1.0065656900405884, "frac_iou_ge_0.5": 0.7383863080684596}, "ego": {"n": 206, "center_err_cm_median": 4.775924205353901, "center_err_cm_p90": 9.510932842205932, "bias_cm": [0.8851255027993211, 0.2872070293982052], "yaw_err_deg_median": 2.869207197204282, "length_ratio_median": 1.0110691785812378, "width_ratio_median": 1.0109628438949585, "frac_iou_ge_0.5": 0.883495145631068}, "peer_only": {"n": 203, "center_err_cm_median": 6.421792485445714, "center_err_cm_p90": 10.089253828775876, "bias_cm": [1.7719601483767844, -1.714833637176476], "yaw_err_deg_median": 2.4997604437654566, "length_ratio_median": 1.0009076595306396, "width_ratio_median": 0.9980927109718323, "frac_iou_ge_0.5": 0.5911330049261084}, "ap_best": {"0.2": 0.8828272646625238, "0.5": 0.5165304809016585}, "ap_last_epoch": {"0.2": 0.8482280241034305, "0.5": 0.5081863592134543, "epoch": 15}}
+== pyramid
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+Align corners:  False
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+pyramid_backbone
+shrink_conv
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 12
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 419, "center_err_cm_median": 2.5080910045799736, "center_err_cm_p90": 5.197467310704328, "bias_cm": [-0.15393050160783572, 0.02220717776646762], "yaw_err_deg_median": 2.2500965390339807, "length_ratio_median": 0.9961993098258972, "width_ratio_median": 1.0001873970031738, "frac_iou_ge_0.5": 0.9761336515513126}, "ego": {"n": 203, "center_err_cm_median": 2.4797092985506226, "center_err_cm_p90": 5.399528044989868, "bias_cm": [-0.5756895412952442, 1.1612476995719476], "yaw_err_deg_median": 1.7564387470774911, "length_ratio_median": 0.9927243590354919, "width_ratio_median": 1.0026004314422607, "frac_iou_ge_0.5": 0.9802955665024631}, "peer_only": {"n": 216, "center_err_cm_median": 2.5155424479806867, "center_err_cm_p90": 4.70219895498701, "bias_cm": [0.2424448921724602, -1.0482799793007196], "yaw_err_deg_median": 2.7587885378490205, "length_ratio_median": 0.9997773468494415, "width_ratio_median": 0.9960151016712189, "frac_iou_ge_0.5": 0.9722222222222222}, "ap_best": {"0.2": 0.9187074363768658, "0.5": 0.8908897389758564}, "ap_last_epoch": {"0.2": 0.9228478331033255, "0.5": 0.9003789511119177, "epoch": 15}}
+== coalign
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+backbone
+shrink_conv
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 12
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 417, "center_err_cm_median": 2.499027869552294, "center_err_cm_p90": 5.701976355620634, "bias_cm": [-0.12353300833873612, -0.1466936823561323], "yaw_err_deg_median": 1.7970910725220548, "length_ratio_median": 0.9973724484443665, "width_ratio_median": 0.997244656085968, "frac_iou_ge_0.5": 0.9616306954436451}, "ego": {"n": 234, "center_err_cm_median": 2.780812852458006, "center_err_cm_p90": 6.261449477973927, "bias_cm": [-0.23504625018845257, -0.012309433430687994], "yaw_err_deg_median": 1.6598384211506487, "length_ratio_median": 0.9957828521728516, "width_ratio_median": 1.0017532706260681, "frac_iou_ge_0.5": 0.9529914529914529}, "peer_only": {"n": 183, "center_err_cm_median": 2.2373478246660907, "center_err_cm_p90": 4.33980453583092, "bias_cm": [0.019057694354343936, -0.31852927934276604], "yaw_err_deg_median": 1.8407086605617564, "length_ratio_median": 1.0000481605529785, "width_ratio_median": 0.9926356077194214, "frac_iou_ge_0.5": 0.9726775956284153}, "ap_best": {"0.2": 0.9176990380892426, "0.5": 0.8812443587505082}, "ap_last_epoch": {"0.2": 0.9065697376067474, "0.5": 0.8834171364338429, "epoch": 15}}
+== v2xvit
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 13
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 425, "center_err_cm_median": 2.743400636740827, "center_err_cm_p90": 8.114862223835164, "bias_cm": [0.040525418870589316, 0.3101671040058136], "yaw_err_deg_median": 1.0449643014985908, "length_ratio_median": 0.9927435517311096, "width_ratio_median": 0.9978820085525513, "frac_iou_ge_0.5": 0.9411764705882353}, "ego": {"n": 256, "center_err_cm_median": 2.611726159217882, "center_err_cm_p90": 7.484393557462152, "bias_cm": [-0.578577765263617, 0.33701597538311034], "yaw_err_deg_median": 1.0218631609825797, "length_ratio_median": 0.9915343523025513, "width_ratio_median": 0.9939350187778473, "frac_iou_ge_0.5": 0.9765625}, "peer_only": {"n": 169, "center_err_cm_median": 3.1185863601492345, "center_err_cm_p90": 9.070527163054972, "bias_cm": [0.9783385261981445, 0.2694966242863582], "yaw_err_deg_median": 1.1728117823828894, "length_ratio_median": 0.996368944644928, "width_ratio_median": 1.0018807649612427, "frac_iou_ge_0.5": 0.8875739644970414}, "ap_best": {"0.2": 0.9196023282232261, "0.5": 0.8553918299453124}, "ap_last_epoch": {"0.2": 0.9172921863812274, "0.5": 0.8373256800242148, "epoch": 15}}
+== who2com
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+{"all": {"n": 425, "center_err_cm_median": 2.303627080491373, "center_err_cm_p90": 6.125721050755205, "bias_cm": [0.97674680036657, 0.09854711469481972], "yaw_err_deg_median": 2.9876340259902974, "length_ratio_median": 1.0014208555221558, "width_ratio_median": 1.0004732608795166, "frac_iou_ge_0.5": 0.9482352941176471}, "ego": {"n": 381, "center_err_cm_median": 2.266499110710627, "center_err_cm_p90": 6.0868510449663376, "bias_cm": [0.8677679464572996, 0.09018174502167489], "yaw_err_deg_median": 2.928470927399647, "length_ratio_median": 1.0017037391662598, "width_ratio_median": 1.0004870891571045, "frac_iou_ge_0.5": 0.9553805774278216}, "peer_only": {"n": 44, "center_err_cm_median": 2.391856013466234, "center_err_cm_p90": 6.47378054006997, "bias_cm": [1.920404603535479, 0.170983611182733], "yaw_err_deg_median": 3.7267697772123975, "length_ratio_median": 0.9972266554832458, "width_ratio_median": 1.0004212260246277, "frac_iou_ge_0.5": 0.8863636363636364}, "ap_best": {"0.2": 0.9285770896295952, "0.5": 0.8705808646795485}, "ap_last_epoch": {"0.2": 0.9285770896295952, "0.5": 0.8705808646795485, "epoch": 15}}
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/nn/functional.py:1960: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/shapely/set_operations.py:133: RuntimeWarning: invalid value encountered in intersection
+  return lib.intersection(a, b, **kwargs)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/mnt/mainvolume/Backup/Projects/HEAL/opencood/models/sub_modules/hmsa.py:35: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.relation_att)
+/mnt/mainvolume/Backup/Projects/HEAL/opencood/models/sub_modules/hmsa.py:36: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.relation_msg)
+
+method        AP.2   AP.5  err_cm  p90_cm    egoErr   peerErr   bias_cm(x,y) yaw_deg  L_rat  W_rat     AP.5 last
+att          0.825  0.451     3.7     7.4  3.1(257)  5.2(126)     (0.7,-0.5)     4.1   1.00   0.99    0.440@ep15
+max          0.875  0.487     4.1     7.4  4.0(327)   4.2(78)    (-0.5,-1.1)     4.8   0.99   1.00    0.487@ep15
+disconet     0.860  0.711     3.3     7.0  3.2(341)   3.9(51)     (1.6,-1.0)     2.3   1.03   0.99    0.735@ep15
+where2comm   0.887  0.723     3.3     7.3  3.3(293)  3.2(112)    (-0.5,-2.3)     1.3   0.96   1.00    0.803@ep15
+cobevt       0.883  0.517     5.3     9.6  4.8(206)  6.4(203)     (1.3,-0.7)     2.7   1.01   1.01    0.508@ep15
+pyramid      0.919  0.891     2.5     5.2  2.5(203)  2.5(216)     (-0.2,0.0)     2.3   1.00   1.00    0.900@ep15
+coalign      0.918  0.881     2.5     5.7  2.8(234)  2.2(183)    (-0.1,-0.1)     1.8   1.00   1.00    0.883@ep15
+v2xvit       0.920  0.855     2.7     8.1  2.6(256)  3.1(169)      (0.0,0.3)     1.0   0.99   1.00    0.837@ep15
+who2com      0.929  0.871     2.3     6.1  2.3(381)   2.4(44)      (1.0,0.1)     3.0   1.00   1.00    0.871@ep15

@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_pyramid_2026_09_24_05_15_25
+config: qcar/configs/zoo/pyramid.yaml

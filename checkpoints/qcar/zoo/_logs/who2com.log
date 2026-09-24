@@ -1,0 +1,195 @@
+
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/train.py -y /mnt/mainvolume/Backup/Projects/HEAL/qcar/configs/zoo/who2com.yaml
+[patch_1cam_loader] OPV2VBaseDataset.find_camera_files -> 1-camera (front only)
+[patch_real_extrinsic] OPV2VBaseDataset.get_ext_int -> real, data-refined camera-to-vehicle geometry (was HEAL's CARLA/UE4 mirror)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Dataset building (train + validate; test/ is NEVER touched here)
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/train
+len: 819
+len: 819
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  train: 819 frames   validate: 237 frames
+  validate positive frames: 219/237
+Creating model / loss / optimizer
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+Froze stem + first 8/16 EfficientNet blocks of encoder_m2.camencode.trunk
+  308660 params frozen, 23601524 params trainable
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! _qcar_pretrained_checkpoint is null -- no pretrained weights exist
+! for the complete architecture.
+! transferred 520 compatible encoder tensors from:
+! /mnt/mainvolume/Backup/Projects/HEAL/checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth
+! every module outside ('encoder_m2.', 'backbone_m2.', 'aligner_m2.') starts randomly initialized.
+! This is not complete-model fine-tuning; treat any resulting
+! number as experimental until a real checkpoint is available.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Training precision: AMP; effective batch size: 2
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+epoch 0: processed 819/819 steps (100%), train loss 445.5906, 224.0s
+  validate loss: 7.5960 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at1.pth
+len: 819
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/optim/lr_scheduler.py:156: UserWarning: The epoch parameter in `scheduler.step()` was not necessary and is being deprecated where possible. Please use `scheduler.step()` to step the scheduler. During the deprecation, if epoch is different from None, the closed form is used instead of the new chainable form, where available. Please open an issue if you are unable to replicate your use case: https://github.com/pytorch/pytorch/issues/new/choose.
+  warnings.warn(EPOCH_DEPRECATION_WARNING, UserWarning)
+epoch 1: processed 819/819 steps (100%), train loss 6.9670, 223.5s
+  validate loss: 6.0743 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at2.pth
+len: 819
+epoch 2: processed 819/819 steps (100%), train loss 4.9504, 223.2s
+  validate loss: 6.9551 (237/237 batches processed; 219 positive frames)
+len: 819
+epoch 3: processed 819/819 steps (100%), train loss 4.1142, 226.7s
+  validate loss: 4.3150 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at4.pth
+len: 819
+epoch 4: processed 819/819 steps (100%), train loss 3.7311, 223.0s
+  validate loss: 3.9385 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at5.pth
+len: 819
+epoch 5: processed 819/819 steps (100%), train loss 2.9739, 223.7s
+  validate loss: 3.1323 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at6.pth
+len: 819
+epoch 6: processed 819/819 steps (100%), train loss 3.0191, 223.5s
+  validate loss: 2.7932 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at7.pth
+len: 819
+epoch 7: processed 819/819 steps (100%), train loss 2.7381, 223.5s
+  validate loss: 3.0248 (237/237 batches processed; 219 positive frames)
+len: 819
+epoch 8: processed 819/819 steps (100%), train loss 2.4270, 223.3s
+  validate loss: 2.7310 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at9.pth
+len: 819
+epoch 9: processed 819/819 steps (100%), train loss 2.0216, 223.0s
+  validate loss: 2.2585 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at10.pth
+len: 819
+epoch 10: processed 819/819 steps (100%), train loss 1.5911, 222.9s
+  validate loss: 2.3520 (237/237 batches processed; 219 positive frames)
+len: 819
+epoch 11: processed 819/819 steps (100%), train loss 1.8775, 223.2s
+  validate loss: 2.2975 (237/237 batches processed; 219 positive frames)
+len: 819
+epoch 12: processed 819/819 steps (100%), train loss 1.8691, 223.3s
+  validate loss: 2.3282 (237/237 batches processed; 219 positive frames)
+len: 819
+epoch 13: processed 819/819 steps (100%), train loss 1.7849, 223.0s
+  validate loss: 2.1413 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at14.pth
+len: 819
+epoch 14: processed 819/819 steps (100%), train loss 1.6258, 223.3s
+  validate loss: 2.1281 (237/237 batches processed; 219 positive frames)
+  new best val checkpoint: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24/net_epoch_bestval_at15.pth
+len: 819
+
+Training finished. Checkpoints + resolved_hypes.json + run_log.json in: /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24
+No same-trajectory test is configured. Final evaluation requires a new independent QCar trajectory.
+
+$ /home/saavkd7/.pyenv/versions/heal38/bin/python qcar/eval.py --model_dir /mnt/mainvolume/Backup/Projects/HEAL/opencood/tools/../logs/QCarZoo_who2com_2026_09_24_02_46_24 --split validate
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/nn/functional.py:1960: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+[patch_1cam_loader] OPV2VBaseDataset.find_camera_files -> 1-camera (front only)
+[patch_real_extrinsic] OPV2VBaseDataset.get_ext_int -> real, data-refined camera-to-vehicle geometry (was HEAL's CARLA/UE4 mirror)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Evaluating on validate: 237 frames
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Traceback (most recent call last):
+  File "qcar/eval.py", line 159, in <module>
+    main()
+  File "qcar/eval.py", line 120, in main
+    pred_box_tensor, pred_score, gt_box_tensor = ds.post_process(
+  File "/mnt/mainvolume/Backup/Projects/HEAL/opencood/data_utils/datasets/intermediate_heter_fusion_dataset.py", line 780, in post_process
+    self.post_processor.post_process(data_dict, output_dict)
+  File "/mnt/mainvolume/Backup/Projects/HEAL/opencood/data_utils/post_processor/voxel_postprocessor.py", line 304, in post_process
+    batch_box3d = self.delta_to_boxes3d(reg, anchor_box)
+  File "/mnt/mainvolume/Backup/Projects/HEAL/opencood/data_utils/post_processor/voxel_postprocessor.py", line 442, in delta_to_boxes3d
+    boxes3d[..., [0, 1]] = torch.mul(deltas[..., [0, 1]], anchors_d) + \
+RuntimeError: Index put requires the source and destination dtypes match, got Half for the destination and Float for the source.
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/nn/functional.py:1960: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/shapely/set_operations.py:133: RuntimeWarning: invalid value encountered in intersection
+  return lib.intersection(a, b, **kwargs)
+[patch_1cam_loader] OPV2VBaseDataset.find_camera_files -> 1-camera (front only)
+[patch_real_extrinsic] OPV2VBaseDataset.get_ext_int -> real, data-refined camera-to-vehicle geometry (was HEAL's CARLA/UE4 mirror)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Evaluating on validate: 237 frames
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+{
+  "model_dir": "/mnt/mainvolume/Backup/Projects/HEAL/opencood/logs/QCarZoo_who2com_2026_09_24_02_46_24",
+  "split": "validate",
+  "n_frames": 237,
+  "iou_thresh": 0.2,
+  "frames_with_gt_box": 219,
+  "frames_with_prediction": 221,
+  "true_positives": 424,
+  "false_positives": 44,
+  "total_gt_boxes": 453,
+  "recall_at_iou": 0.9359823399558499,
+  "average_precision": 0.9268629009202948,
+  "amp": true,
+  "plugins": [
+    "qcar.patches.patch_1cam_loader",
+    "qcar.patches.patch_real_extrinsic"
+  ],
+  "fusion_method": "who2com",
+  "mean_model_seconds": 0.14180344678843462,
+  "note": "Development metrics only. Final evaluation requires a new, independent QCar trajectory configured as test_dir."
+}
+
+written: /mnt/mainvolume/Backup/Projects/HEAL/opencood/logs/QCarZoo_who2com_2026_09_24_02_46_24/eval_validate.json

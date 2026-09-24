@@ -1,0 +1,22 @@
+{
+  "model_dir": "/mnt/mainvolume/Backup/Projects/HEAL/opencood/logs/QCarZoo_disconet_2026_09_23_20_35_25",
+  "split": "validate",
+  "n_frames": 237,
+  "iou_thresh": 0.2,
+  "frames_with_gt_box": 219,
+  "frames_with_prediction": 204,
+  "true_positives": 393,
+  "false_positives": 30,
+  "total_gt_boxes": 453,
+  "recall_at_iou": 0.8675496688741722,
+  "average_precision": 0.8625424164325437,
+  "amp": true,
+  "plugins": [
+    "qcar.patches.patch_1cam_loader",
+    "qcar.patches.patch_real_extrinsic",
+    "qcar.patches.heal_disco_fuse"
+  ],
+  "fusion_method": "disconet",
+  "mean_model_seconds": 0.1384066380294841,
+  "note": "Development metrics only. Final evaluation requires a new, independent QCar trajectory configured as test_dir."
+}

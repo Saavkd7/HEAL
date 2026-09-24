@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_coalign_2026_09_24_03_55_22
+config: qcar/configs/zoo/coalign.yaml

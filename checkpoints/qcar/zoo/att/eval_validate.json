@@ -1,0 +1,21 @@
+{
+  "model_dir": "/mnt/mainvolume/Backup/Projects/HEAL/opencood/logs/QCarZoo_att_2026_09_23_18_22_17",
+  "split": "validate",
+  "n_frames": 237,
+  "iou_thresh": 0.2,
+  "frames_with_gt_box": 219,
+  "frames_with_prediction": 207,
+  "true_positives": 385,
+  "false_positives": 24,
+  "total_gt_boxes": 453,
+  "recall_at_iou": 0.8498896247240618,
+  "average_precision": 0.8296250560572055,
+  "amp": true,
+  "plugins": [
+    "qcar.patches.patch_1cam_loader",
+    "qcar.patches.patch_real_extrinsic"
+  ],
+  "fusion_method": "att",
+  "mean_model_seconds": 0.1400322199197764,
+  "note": "Development metrics only. Final evaluation requires a new, independent QCar trajectory configured as test_dir."
+}

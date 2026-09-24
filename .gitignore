@@ -174,10 +174,28 @@ checkpoints/*/
 !checkpoints/MANIFEST.md
 !checkpoints/README.md
 
+# QCar model zoo (qcar/zoo.py): track everything that documents and
+# reproduces each run -- config.yaml, resolved_hypes.json, eval/run logs,
+# SOURCE_RUN.txt, COMPARISON/LOCALIZATION results, _logs/ (~400 KB total) --
+# but never the weights. Git cannot re-include a file under an excluded
+# directory, so the directories are re-included level by level.
+!checkpoints/qcar/
+checkpoints/qcar/*/
+!checkpoints/qcar/zoo/
+checkpoints/qcar/zoo/**/*.pth
+checkpoints/qcar/zoo/**/*.pt
+checkpoints/qcar/zoo/**/*.zip
+checkpoints/qcar/zoo/**/events.out.tfevents*
+# training/eval logs of each zoo run (the global *.log rule would drop them)
+!checkpoints/qcar/zoo/_logs/*.log
+
+# Jupyter autosaves (e.g. of qcar_rounds.ipynb)
+.ipynb_checkpoints/
+
 # qcar_testbed_integration sibling project (renamed 2026-09-18, was
 # HEAL-Concordia) -- QCar recordings, calibration, notebooks, artifacts --
 # data only, no framework code -- nested here so relative dataset paths in
-# qcar_real configs resolve locally. Not part of the upstream-facing diff,
+# qcar/configs resolve locally. Not part of the upstream-facing diff,
 # has its own separate git history.
 /qcar_testbed_integration/
 /qcar_dataset

@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_max_2026_09_23_19_31_32
+config: qcar/configs/zoo/max.yaml

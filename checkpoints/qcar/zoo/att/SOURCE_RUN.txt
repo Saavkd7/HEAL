@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_att_2026_09_23_18_22_17
+config: qcar/configs/zoo/att.yaml

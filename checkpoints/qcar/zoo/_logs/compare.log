@@ -1,0 +1,342 @@
+comparing: ['att', 'att_prev', 'coalign', 'cobevt', 'disconet', 'max', 'pyramid', 'v2vnet', 'v2vnet_failed_lr1e-4', 'v2xvit', 'where2comm', 'who2com']
+[patch_1cam_loader] OPV2VBaseDataset.find_camera_files -> 1-camera (front only)
+[patch_real_extrinsic] OPV2VBaseDataset.get_ext_int -> real, data-refined camera-to-vehicle geometry (was HEAL's CARLA/UE4 mirror)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 13
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  att         117s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 7
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  att_prev    111s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+backbone
+shrink_conv
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 12
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  coalign     107s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 10
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  cobevt      102s
+[heal_disco_fuse] registered opencood.models.fuse_modules.disco_fuse (PixelWeightLayer)
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic', 'qcar.patches.heal_disco_fuse']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 6
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  disconet    110s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  max         109s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+Align corners:  False
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+pyramid_backbone
+shrink_conv
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 12
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  pyramid     111s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head_single
+reg_head_single
+dir_head_single
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 12
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  v2vnet      104s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+cls_head_single
+reg_head_single
+dir_head_single
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  v2vnet_failed_lr1e-4 104s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 13
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  v2xvit      117s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 8
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  where2comm  114s
+[qcar] plugins: ['qcar.patches.patch_1cam_loader', 'qcar.patches.patch_real_extrinsic']
+Loaded pretrained weights for efficientnet-b0
+=========Those modules have trainable component=========
+encoder_m2
+backbone_m2
+shrinker_m2
+fusion_net
+cls_head
+reg_head
+dir_head
+
+=========Those modules have untrainable component=========
+
+
+resuming best validation model at epoch 15
+------ Loading Checkpoint ------
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+Dataset dir: qcar_dataset/pipeline/datasets/CoopFront/validate
+len: 237
+len: 237
+  who2com     114s
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/nn/functional.py:1960: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/shapely/set_operations.py:133: RuntimeWarning: invalid value encountered in intersection
+  return lib.intersection(a, b, **kwargs)
+/home/saavkd7/.pyenv/versions/heal38/lib/python3.8/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/mnt/mainvolume/Backup/Projects/HEAL/opencood/models/sub_modules/hmsa.py:35: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.relation_att)
+/mnt/mainvolume/Backup/Projects/HEAL/opencood/models/sub_modules/hmsa.py:36: UserWarning: nn.init.xavier_uniform is now deprecated in favor of nn.init.xavier_uniform_.
+  torch.nn.init.xavier_uniform(self.relation_msg)
+# QCar fusion comparison
+
+Split `validate`: 237 frames from {'qcar_coop_07': 118, 'qcar_coop_08': 119}; 10-frame blocks -> 24 independent blocks; 1000 paired block-bootstrap resamples (seed 0). 95% intervals in brackets.
+
+Caveat: validate also selected each run's best epoch (shared mild optimism); no independent test trajectory exists yet.
+
+## IoU 0.2
+
+Leader: **who2com**. Not significantly worse than the leader: coalign, cobevt, pyramid, v2xvit, where2comm, who2com.
+
+| method | AP coop | AP ego-only | fusion gain | gap to leader | P(best) | AP per trajectory |
+|---|---|---|---|---|---|---|
+| who2com | 0.929 [0.873, 0.974] | 0.753 [0.680, 0.819] | 0.176 [0.102, 0.252] | 0.000 [0.000, 0.000] | 0.52 | qcar_coop_07 0.928, qcar_coop_08 0.929 |
+| v2xvit | 0.920 [0.870, 0.960] | 0.533 [0.480, 0.586] | 0.386 [0.314, 0.448] | 0.009 [-0.017, 0.035] | 0.15 | qcar_coop_07 0.926, qcar_coop_08 0.916 |
+| pyramid | 0.919 [0.846, 0.970] | 0.453 [0.407, 0.518] | 0.466 [0.349, 0.550] | 0.010 [-0.014, 0.039] | 0.17 | qcar_coop_07 0.908, qcar_coop_08 0.930 |
+| coalign | 0.918 [0.855, 0.968] | 0.458 [0.416, 0.511] | 0.460 [0.374, 0.527] | 0.011 [-0.005, 0.027] | 0.05 | qcar_coop_07 0.922, qcar_coop_08 0.912 |
+| where2comm | 0.887 [0.817, 0.951] | 0.576 [0.523, 0.628] | 0.312 [0.238, 0.389] | 0.041 [-0.003, 0.086] | 0.02 | qcar_coop_07 0.914, qcar_coop_08 0.855 |
+| cobevt | 0.883 [0.822, 0.939] | 0.450 [0.394, 0.520] | 0.433 [0.349, 0.513] | 0.046 [-0.032, 0.113] | 0.09 | qcar_coop_07 0.882, qcar_coop_08 0.884 |
+| max | 0.875 [0.802, 0.932] | 0.479 [0.423, 0.525] | 0.395 [0.317, 0.472] | 0.054 [0.012, 0.103] | 0.00 | qcar_coop_07 0.905, qcar_coop_08 0.839 |
+| disconet | 0.860 [0.775, 0.923] | 0.353 [0.299, 0.407] | 0.508 [0.450, 0.551] | 0.068 [0.031, 0.116] | 0.00 | qcar_coop_07 0.848, qcar_coop_08 0.876 |
+| att | 0.825 [0.735, 0.895] | 0.452 [0.365, 0.525] | 0.373 [0.276, 0.480] | 0.104 [0.056, 0.159] | 0.00 | qcar_coop_07 0.796, qcar_coop_08 0.864 |
+| att_prev | 0.797 [0.694, 0.869] | 0.625 [0.520, 0.700] | 0.172 [0.116, 0.235] | 0.131 [0.089, 0.191] | 0.00 | qcar_coop_07 0.807, qcar_coop_08 0.780 |
+| v2vnet | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.929 [0.873, 0.974] | 0.00 | qcar_coop_07 0.000, qcar_coop_08 0.000 |
+| v2vnet_failed_lr1e-4 | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.929 [0.873, 0.974] | 0.00 | qcar_coop_07 0.000, qcar_coop_08 0.000 |
+
+## IoU 0.5
+
+Leader: **pyramid**. Not significantly worse than the leader: coalign, pyramid, v2xvit, who2com.
+
+| method | AP coop | AP ego-only | fusion gain | gap to leader | P(best) | AP per trajectory |
+|---|---|---|---|---|---|---|
+| pyramid | 0.891 [0.812, 0.948] | 0.406 [0.348, 0.476] | 0.485 [0.367, 0.581] | 0.000 [0.000, 0.000] | 0.62 | qcar_coop_07 0.878, qcar_coop_08 0.906 |
+| coalign | 0.881 [0.801, 0.943] | 0.417 [0.365, 0.477] | 0.464 [0.367, 0.549] | 0.010 [-0.027, 0.047] | 0.27 | qcar_coop_07 0.884, qcar_coop_08 0.877 |
+| who2com | 0.871 [0.794, 0.936] | 0.534 [0.438, 0.619] | 0.336 [0.208, 0.462] | 0.020 [-0.016, 0.056] | 0.10 | qcar_coop_07 0.876, qcar_coop_08 0.864 |
+| v2xvit | 0.855 [0.782, 0.914] | 0.489 [0.425, 0.553] | 0.366 [0.274, 0.444] | 0.035 [-0.008, 0.077] | 0.02 | qcar_coop_07 0.852, qcar_coop_08 0.862 |
+| where2comm | 0.723 [0.643, 0.816] | 0.160 [0.085, 0.268] | 0.563 [0.466, 0.663] | 0.168 [0.062, 0.251] | 0.00 | qcar_coop_07 0.665, qcar_coop_08 0.800 |
+| disconet | 0.711 [0.619, 0.793] | 0.225 [0.177, 0.273] | 0.485 [0.409, 0.560] | 0.180 [0.111, 0.250] | 0.00 | qcar_coop_07 0.755, qcar_coop_08 0.664 |
+| att_prev | 0.650 [0.556, 0.720] | 0.463 [0.369, 0.546] | 0.187 [0.106, 0.256] | 0.241 [0.189, 0.299] | 0.00 | qcar_coop_07 0.628, qcar_coop_08 0.667 |
+| cobevt | 0.517 [0.435, 0.619] | 0.268 [0.195, 0.353] | 0.248 [0.122, 0.363] | 0.374 [0.257, 0.468] | 0.00 | qcar_coop_07 0.424, qcar_coop_08 0.653 |
+| max | 0.487 [0.384, 0.617] | 0.038 [0.014, 0.088] | 0.449 [0.349, 0.567] | 0.404 [0.257, 0.519] | 0.00 | qcar_coop_07 0.590, qcar_coop_08 0.386 |
+| att | 0.451 [0.349, 0.560] | 0.369 [0.256, 0.467] | 0.082 [0.039, 0.144] | 0.440 [0.305, 0.567] | 0.00 | qcar_coop_07 0.404, qcar_coop_08 0.509 |
+| v2vnet | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.891 [0.812, 0.948] | 0.00 | qcar_coop_07 0.000, qcar_coop_08 0.000 |
+| v2vnet_failed_lr1e-4 | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] | 0.891 [0.812, 0.948] | 0.00 | qcar_coop_07 0.000, qcar_coop_08 0.000 |
+
+
+COMPARE_EXIT 0

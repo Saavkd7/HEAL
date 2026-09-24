@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_who2com_2026_09_24_02_46_24
+config: qcar/configs/zoo/who2com.yaml

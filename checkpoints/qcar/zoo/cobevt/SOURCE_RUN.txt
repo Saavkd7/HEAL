@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_cobevt_2026_09_24_00_28_18
+config: qcar/configs/zoo/cobevt.yaml

@@ -42,7 +42,7 @@ for `camera_attfuse_pretrain.yaml` / `camera_attfuse_onlyfront.yaml` /
 `camera_pyramid_onlyfront.yaml` / `camera_attfuse_qcar.yaml`'s
 `_qcar_pretrained_checkpoint` / `_qcar_encoder_initialization_checkpoint`
 fields (paths updated 2026-09-18 to `checkpoints/qcar/...` — see
-`opencood/hypes_yaml/opv2v/CameraOnly/qcar_real/*.yaml`).
+`qcar/configs/*.yaml`).
 
 ### `heal_reference/` — general HEAL framework material, not QCar's problem
 

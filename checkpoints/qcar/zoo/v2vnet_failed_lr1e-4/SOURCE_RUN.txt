@@ -1,0 +1,2 @@
+trained run: opencood/logs/QCarZoo_v2vnet_2026_09_23_23_09_21
+config: qcar/configs/zoo/v2vnet.yaml

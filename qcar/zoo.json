@@ -1,0 +1,121 @@
+{
+  "_comment": "THE definition of the QCar model zoo: every HEAL fusion method trained on the same QCar data with the same training recipe. Read by qcar/zoo.py -- it hardcodes none of this. Relative paths resolve against the HEAL repo root. SENSORS: each method declares a 'sensor'; its generated config = bases[sensor] (QCar data, heter, pre/postprocess, loss, optimizer, schedule) + the 'model' section of model_from. Only 'camera' exists today (the QCar has no 3D LiDAR recording yet); adding LiDAR = add a bases.lidar yaml (heter modality with sensor_type lidar, e.g. pointpillar) and methods with sensor 'lidar' -- zoo.py needs no change. For sensor 'camera' the encoder's data_aug_conf and depth_supervision are taken from the base (1 front camera, 480x640, no depth GT). init 'full' = load the whole model from pretrained (architecture must match exactly); init 'encoder' = transplant only the tensors under encoder_init_prefixes from encoder_init_checkpoint[sensor]; fusion and heads start random. model_args: keys merged into model.args. set: dotted hypes keys applied last (e.g. model.args.cobevt.agent_size). keys_from_source: dotted keys copied from model_from too (feature_stride for methods that fuse at 1/4 resolution). loss_from_source: use model_from's loss. extra_plugins: appended to conf.json plugins for that method. source_text_fixes: literal {old: new} replacements on model_from's text before parsing, for upstream yaml typos (opencood/ is never edited). train_flags: extra qcar/train.py flags for that method (e.g. --no_amp).",
+  "bases": {
+    "camera": "qcar/configs/camera_attfuse_coop.yaml"
+  },
+  "encoder_init_checkpoint": {
+    "camera": "checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth"
+  },
+  "encoder_init_prefixes": [
+    "encoder_m2.",
+    "backbone_m2.",
+    "aligner_m2."
+  ],
+  "configs_dir": "qcar/configs/zoo",
+  "checkpoints_dir": "checkpoints/qcar/zoo",
+  "logs_dir": "checkpoints/qcar/zoo/_logs",
+  "check_steps": 2,
+  "methods": {
+    "att": {
+      "sensor": "camera",
+      "model_from": "checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/config.yaml",
+      "init": "full",
+      "pretrained": "checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/net_epoch_bestval_at17.pth"
+    },
+    "max": {
+      "sensor": "camera",
+      "_note": "F-Cooper (max fusion). HEAL's released opv2v 'fcooper' camera checkpoint was trained with fusion_method att (identical architecture to attfuse); max fusion has no parameters, so those weights load exactly.",
+      "model_from": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_fcooper_2023_08_06_11_48_21/config.yaml",
+      "model_args": {
+        "fusion_method": "max"
+      },
+      "init": "full",
+      "pretrained": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_fcooper_2023_08_06_11_48_21/net_epoch_bestval_at17.pth"
+    },
+    "disconet": {
+      "sensor": "camera",
+      "model_from": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_disco_2023_08_08_16_50_01/config.yaml",
+      "init": "full",
+      "pretrained": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_disco_2023_08_08_16_50_01/net_epoch_bestval_at23.pth",
+      "extra_plugins": [
+        "qcar.patches.heal_disco_fuse"
+      ],
+      "_note": "HEAL's fusion_in_one.DiscoFusion imports disco_fuse.py, which this checkout lacks; qcar/patches/heal_disco_fuse.py restores it from the authors' snapshot next to the checkpoint."
+    },
+    "v2xvit": {
+      "sensor": "camera",
+      "model_from": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_v2xvit_2023_08_07_04_46_10/config.yaml",
+      "init": "full",
+      "pretrained": "checkpoints/heal_reference/opv2v_camera/HeterBaseline_opv2v_camera_v2xvit_2023_08_07_04_46_10/net_epoch_bestval_at21.pth",
+      "keys_from_source": [
+        "postprocess.anchor_args.feature_stride"
+      ]
+    },
+    "v2vnet": {
+      "sensor": "camera",
+      "model_from": "opencood/hypes_yaml/opv2v/CameraOnly/camera_v2vnet.yaml",
+      "init": "encoder",
+      "keys_from_source": [
+        "postprocess.anchor_args.feature_stride"
+      ],
+      "set": {
+        "optimizer.lr": 0.001
+      },
+      "_note": "Only deviation from the shared recipe: lr 1e-3 (HEAL's own v2vnet lr). With the shared lr 1e-4 it collapsed to all-negative (loss stuck ~19, 0 predictions after 15 epochs; run kept in checkpoints/qcar/zoo/v2vnet_failed_lr1e-4)."
+    },
+    "cobevt": {
+      "sensor": "camera",
+      "model_from": "opencood/hypes_yaml/opv2v/CameraOnly/camera_cobevt.yaml",
+      "init": "encoder",
+      "keys_from_source": [
+        "postprocess.anchor_args.feature_stride"
+      ],
+      "set": {
+        "model.args.cobevt.agent_size": 2
+      },
+      "_note": "agent_size sizes CoBEVT's relative-position bias (window_size^2 * agent_size); OPV2V uses 5 CAVs, QCar max_cav is 2."
+    },
+    "where2comm": {
+      "sensor": "camera",
+      "_note": "HEAL ships no camera yaml for where2comm; attfuse architecture with the fusion swapped (Where2commFusion takes the feature dim).",
+      "model_from": "checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/config.yaml",
+      "model_args": {
+        "fusion_method": "where2comm",
+        "where2comm": 256
+      },
+      "init": "encoder"
+    },
+    "who2com": {
+      "sensor": "camera",
+      "_note": "HEAL ships no camera yaml for who2com; attfuse architecture with the fusion swapped (Who2comFusion takes the feature dim).",
+      "model_from": "checkpoints/qcar/HeterBaseline_opv2v_camera_attfuse_2023_08_08_16_50_01/config.yaml",
+      "model_args": {
+        "fusion_method": "who2com",
+        "who2com": 256
+      },
+      "init": "encoder"
+    },
+    "coalign": {
+      "sensor": "camera",
+      "model_from": "opencood/hypes_yaml/opv2v/CameraOnly/camera_coalign.yaml",
+      "init": "encoder",
+      "source_text_fixes": {
+        "    fusion_method: att\n      feat_dim: [64, 128, 256]": "    fusion_method: att\n    att:\n      feat_dim: [64, 128, 256]"
+      },
+      "_note": "Upstream camera_coalign.yaml has 'att:' missing above 'feat_dim' (invalid YAML); fixed in memory via source_text_fixes. Trains in fp32: its initial loss (~8e3) overflows fp16 under AMP (loss nan), finite in fp32.",
+      "train_flags": [
+        "--no_amp"
+      ]
+    },
+    "pyramid": {
+      "sensor": "camera",
+      "model_from": "opencood/hypes_yaml/opv2v/CameraOnly/camera_pyramid.yaml",
+      "loss_from_source": true,
+      "init": "encoder",
+      "set": {
+        "loss.core_method": "point_pillar_pyramid_balanced_bce_loss"
+      },
+      "_note": "Keeps HEAL's pyramid loss args (per-level occupancy), but the detection head uses the same balanced BCE as att (qcar/losses/point_pillar_pyramid_balanced_bce_loss.py): HEAL's focal cls loss collapsed to all-negative on QCar."
+    }
+  }
+}

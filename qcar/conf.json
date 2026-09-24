@@ -1,0 +1,79 @@
+{
+  "_comment": "THE defaults for qcar/train.py, qcar/eval.py and qcar/visualize.py -- the scripts hardcode none of these. Edit this file and run with NO flags; a CLI flag overrides the matching key for that one run only, and no script writes this file. Relative paths resolve against the HEAL repo root. Module selection (plugins, model_packages, loss_packages) follows CLI > experiment yaml (_qcar_plugins / _qcar_model_packages / _qcar_loss_packages, or a run's resolved_hypes.json) > this file. plugins: dotted module names or .py file paths, imported before the dataset is built (a plugin applies itself on import). overrides: dotted hypes keys applied after the yaml, e.g. {\"model.args.fusion_method\": \"max\"}; --set KEY=VALUE applies on top. train_epoches: null = use train_params.epoches from the yaml. visualize_out may use {model_dir} and {split}. Keys are prefixed by the script that owns them; unprefixed keys are shared: compare_ego_only_comm_range: comm_range used for compare.py's ego-only pass (small enough to drop every peer; positions are in x10 model space). compare_iou: list of IoU thresholds, first is the headline. rounds_method: zoo method whose architecture and fusion weights run; rounds_stage_sources: per-stage zoo method to load encoder / bev_backbone / head weights from instead (null = rounds_method; loads only if tensors match, warns). rounds_scenarios: null = every scenario of rounds_split, or a list of scenario folder names. rounds_cache_dir: where each method's precomputed peer features (what the peer transmits) are stored, rebuilt automatically when stale. rounds_amp: false = fp32. rounds_cache_keep_other_methods: false = building one method's peer cache deletes the other methods' caches for that split (0.5-2 GB each).",
+  "_owners": {
+    "plugins / model_packages / loss_packages / overrides": "all three scripts",
+    "train_*": "train.py",
+    "eval_*": "eval.py",
+    "visualize_*": "visualize.py",
+    "compare_*": "compare.py",
+    "analyze_*": "analyze_localization.py (also reads compare_zoo_dir / compare_split / compare_ego_only_comm_range)",
+    "rounds_*": "rounds.py + qcar_rounds.ipynb (also reads compare_zoo_dir)"
+  },
+  "plugins": [
+    "qcar.patches.patch_1cam_loader",
+    "qcar.patches.patch_real_extrinsic"
+  ],
+  "model_packages": [
+    "opencood.models"
+  ],
+  "loss_packages": [
+    "opencood.loss",
+    "qcar.losses"
+  ],
+  "overrides": {},
+  "train_hypes_yaml": "qcar/configs/camera_attfuse_coop.yaml",
+  "train_batch_size": 1,
+  "train_accumulation_steps": 2,
+  "train_gradient_clip": 10.0,
+  "train_amp": true,
+  "train_epoches": null,
+  "train_seed": 42,
+  "train_num_workers": 2,
+  "eval_model_dir": "opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_coop_2026_09_14_12_37_23",
+  "eval_split": "validate",
+  "eval_iou_thresh": 0.2,
+  "eval_amp": true,
+  "visualize_model_dir": "opencood/logs/HeterBaseline_opv2v_camera_attfuse_qcar_coop_2026_09_14_12_37_23",
+  "visualize_split": "validate",
+  "visualize_n": 8,
+  "visualize_out": "{model_dir}/visualize_{split}",
+  "compare_zoo_dir": "checkpoints/qcar/zoo",
+  "compare_split": "validate",
+  "compare_iou": [
+    0.2,
+    0.5
+  ],
+  "compare_bootstrap": 1000,
+  "compare_block_frames": 10,
+  "compare_ego_only_comm_range": 0.001,
+  "compare_seed": 0,
+  "analyze_methods": [
+    "att",
+    "max",
+    "disconet",
+    "where2comm",
+    "cobevt",
+    "pyramid",
+    "coalign",
+    "v2xvit",
+    "who2com"
+  ],
+  "rounds_method": "pyramid",
+  "rounds_stage_sources": {
+    "encoder": null,
+    "bev_backbone": null,
+    "head": null
+  },
+  "rounds_split": "validate",
+  "rounds_scenarios": null,
+  "rounds_iou": [
+    0.2,
+    0.5
+  ],
+  "rounds_device": "cuda",
+  "rounds_amp": false,
+  "rounds_cache_dir": "qcar_testbed_integration/artifacts/rounds_cache",
+  "rounds_cache_dtype": "float16",
+  "rounds_cache_keep_other_methods": false,
+  "rounds_play_interval_ms": 400
+}
