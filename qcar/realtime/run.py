@@ -251,7 +251,7 @@ def main():
                 if viewer.quit:
                     break
                 if n_pairs == 0 and now - viewer.last_draw >= 1.0:
-                    viewer.waiting("Esperando datos... frames: %s | pares: 0" % ", ".join(
+                    viewer.waiting("Waiting for data... frames: %s | pairs: 0" % ", ".join(
                         "CAV %s=%d" % (a, syncs[a].frames) for a in agents))
                     viewer.last_draw = now
                 viewer.pump()
@@ -271,7 +271,7 @@ def main():
                     if model is None:
                         print("[realtime] first pair formatted -- loading model %s" % opt.model_dir)
                         if viewer is not None:
-                            viewer.waiting("Primer par recibido - cargando modelo HEAL...")
+                            viewer.waiting("First pair received - loading HEAL model...")
                         model = heal_input.LiveModel(opt.model_dir, opt.live_dir, qconf, opt,
                                                      opt.amp)
                         print("[realtime] model on %s, amp=%s" % (model.device, model.amp))
@@ -296,11 +296,11 @@ def main():
                 if viewer is not None and viewer.due():
                     if opt.no_model:
                         viewer.update(frames, np.zeros((0, 8, 3)), np.zeros(0),
-                                      {"pair": n_pairs, "status": "sin modelo (--no_model)"})
+                                      {"pair": n_pairs, "status": "no model (--no_model)"})
                     else:
                         viewer.update(frames, boxes, scores, {
                             "pair": n_pairs, "n_agents_fused": timing.get("n_agents_fused", "-"),
-                            "status": "latencia %.0f ms | modelo %.0f ms" % (
+                            "status": "latency %.0f ms | model %.0f ms" % (
                                 rec["latency_from_last_arrival_sec"] * 1000,
                                 timing.get("model_s", 0) * 1000)})
                 n_pairs += 1

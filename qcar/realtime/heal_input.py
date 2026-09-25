@@ -138,7 +138,17 @@ class LiveModel:
         if len(self.ds) != 1:
             raise RuntimeError("live dataset should hold exactly 1 frame, has %d" % len(self.ds))
         self.model = registry.create_model(hypes)
-        _, self.model = train_utils.load_saved_model(model_dir, self.model)
+        # HEAL's load_saved_model silently keeps RANDOM weights when the dir
+        # has no .pth (epoch 0) -- and checkpoints are gitignored, so a fresh
+        # clone has resolved_hypes.json but no weights. Seen live 2026-09-25:
+        # hundreds of 0.51-score boxes on a grid. Fail loudly instead.
+        epoch, self.model = train_utils.load_saved_model(model_dir, self.model)
+        if not epoch:
+            raise SystemExit(
+                "No checkpoint (.pth) in %s -- the model would run with random weights.\n"
+                "Download the zoo:  hf download Saavkd7/qcar-heal-zoo --local-dir checkpoints/qcar/zoo"
+                % model_dir)
+        print("[realtime] weights loaded: epoch %s from %s" % (epoch, model_dir))
         # CUDA only: HEAL's camera encoder (heter_encoders.py) calls .cuda()
         # in its constructor, so a camera model cannot be built on CPU.
         self.device = torch.device("cuda")

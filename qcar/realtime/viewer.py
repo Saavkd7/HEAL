@@ -62,7 +62,7 @@ class LiveViewer:
         self.labels_tk, self.photos = {}, {}
         titles = dict((a, "POV CAV %s - %s%s" % (a, car_labels[a], " (ego)" if a == ego_id else ""))
                       for a in agents)
-        titles["bev"] = "Vista de pajaro (Vicon, metros)"
+        titles["bev"] = "Bird's-eye view (Vicon, metres)"
         for key, title in titles.items():
             win = tk.Toplevel(self.root)
             win.title(title)
@@ -72,7 +72,7 @@ class LiveViewer:
             label = tk.Label(win, bg="black")
             label.pack()
             self.labels_tk[key] = label
-        self.waiting("Esperando datos de los carros...")
+        self.waiting("Waiting for car data...")
 
     def waiting(self, text):
         """Placeholder shown until the first fused pair (Tk windows are
@@ -125,7 +125,7 @@ class LiveViewer:
                 n_drawn += bool(self.draw_boxes(ctx, b[None], DET_COLOR))
         color = EGO_COLOR if aid == self.ego_id else PEER_COLOR
         cv2.rectangle(img, (0, 0), (img.shape[1], 26), (0, 0, 0), -1)
-        cv2.putText(img, "CAV %s %s | detecciones visibles aqui: %d"
+        cv2.putText(img, "CAV %s %s | detections visible here: %d"
                     % (aid, "(ego)" if aid == self.ego_id else "(peer)", n_drawn),
                     (8, 18), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
         return img
@@ -170,7 +170,7 @@ class LiveViewer:
             cv2.putText(img, "%.2f" % s, tuple(pts.max(axis=0) + [3, 0]),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.45, DET_COLOR, 1, cv2.LINE_AA)
 
-        lines = ["par %d | agentes fusionados: %s | detecciones: %d"
+        lines = ["pair %d | agents fused: %s | detections: %d"
                  % (info["pair"], info.get("n_agents_fused", "-"), len(scores)),
                  info.get("status", "")]
         for i, text in enumerate(l for l in lines if l):
