@@ -1,0 +1,32 @@
+{
+  "_comment": "THE defaults for qcar/realtime/run.py and fake_car.py -- the scripts hardcode none of these. A CLI flag overrides the matching key for one run; no script writes this file. Relative paths resolve against the HEAL repo root. Frame synchronization (fps, wait_sec, camera_tolerance, vicon_max_age, vicon_pose_key) is NOT here on purpose: it is read from convert_conf (bag_to_dataset_rosbags.py's conf.json) so live frames are assembled with the exact settings the training data was. Cross-car pair_tolerance_sec, car identity (agent 1 = qcar-52775 = ego, 2 = qcar-52776), calibration and the HEAL frame format come from build_inference.py (build_inference_py). cars: ROS master of each agent id in build_inference's CAR_REGISTRY. cameras: which cameras to subscribe to -- HEAL only uses front; add back/left/right only if record_dir should keep them (each is ~0.9 MB/msg at 20 Hz per car over the network). pair_wait_sec: how long an ego frame waits for its peer before it is dropped. record_dir: null = do not record; otherwise every fused pair is also saved in the converter's per-frame layout (build_inference.py can rebuild it offline). output_jsonl may use {session}. fake_car_*: defaults of fake_car.py (bag replay for testing without the cars).",
+  "model_dir": "checkpoints/qcar/zoo/pyramid",
+  "amp": true,
+  "cars": {
+    "1": {"master_uri": "http://192.168.1.198:11311"},
+    "2": {"master_uri": "http://192.168.1.158:11311"}
+  },
+  "topics": {
+    "front": "/qcar/csi_front",
+    "back": "/qcar/csi_back",
+    "left": "/qcar/csi_left",
+    "right": "/qcar/csi_right",
+    "vicon": "/qcar/vicon"
+  },
+  "cameras": ["front"],
+  "pair_wait_sec": 0.15,
+  "live_dir": "/dev/shm/qcar_realtime",
+  "output_jsonl": "opencood/logs/realtime/{session}.jsonl",
+  "record_dir": null,
+  "reconnect_sec": 2.0,
+  "stats_every_sec": 5.0,
+  "build_inference_py": "qcar_testbed_integration/data/qcar_dataset/pipeline/scripts/build/cooperative/build_inference.py",
+  "converter_py": "qcar_testbed_integration/data/qcar_dataset/pipeline/scripts/convert/bag_to_dataset_rosbags.py",
+  "convert_conf": "qcar_testbed_integration/data/qcar_dataset/pipeline/scripts/convert/conf.json",
+  "fake_car_bags": {
+    "1": "qcar_testbed_integration/data/qcar_onboard/Training/ExperimentNo1/192.168.1.198/bags/MovingFourCameraVicon_Node3Via1To13_00/MovingFourCameraVicon_Node3Via1To13_00.bag",
+    "2": "qcar_testbed_integration/data/qcar_onboard/Training/ExperimentNo1/192.168.1.158/bags/MovingFourCameraVicon_Node15Via6To8_00/MovingFourCameraVicon_Node15Via6To8_00.bag"
+  },
+  "fake_car_ports": {"1": 11411, "2": 11412},
+  "fake_car_loop": true
+}
