@@ -34,6 +34,8 @@ import json
 import os
 import queue
 import statistics
+import sys
+import tempfile
 import threading
 import time
 
@@ -49,7 +51,6 @@ DEFAULT_CONF = os.path.join(HERE, "conf.json")
 
 
 def realtime_conf_path():
-    import sys
     argv = sys.argv[1:]
     for i, arg in enumerate(argv):
         if arg == "--realtime_conf" and i + 1 < len(argv):
@@ -90,6 +91,9 @@ def parse_args():
 
     opt.model_dir = config.cli_path(opt.model_dir) if opt.model_dir else rt.path_of("model_dir")
     opt.live_dir = config.cli_path(opt.live_dir) if opt.live_dir else rt.path_of("live_dir")
+    if sys.platform.startswith("win") and opt.live_dir.replace("\\", "/").startswith("/dev/shm"):
+        # no tmpfs on Windows: use the user's temp dir instead of C:\dev\shm
+        opt.live_dir = os.path.join(tempfile.gettempdir(), "qcar_realtime")
     opt.record_dir = (config.cli_path(opt.record_dir) if opt.record_dir
                       else rt.path_of("record_dir"))
     opt.output_jsonl = (config.cli_path(opt.output_jsonl) if opt.output_jsonl
@@ -195,7 +199,7 @@ def main():
 
     viewer = None
     if opt.view:
-        if not os.environ.get("DISPLAY"):
+        if sys.platform.startswith("linux") and not os.environ.get("DISPLAY"):
             print("[realtime] no DISPLAY -- viewer disabled (use --no_view to silence this)")
         else:
             from qcar.realtime.viewer import LiveViewer

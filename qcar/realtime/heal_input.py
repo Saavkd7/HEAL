@@ -114,6 +114,7 @@ class LiveModel:
         from opencood.data_utils.datasets import build_dataset
         from opencood.tools import train_utils
         from qcar import config, registry
+        import qcar.patches.patch_windows_paths  # noqa: F401 -- no-op off Windows
 
         self.train_utils = train_utils
         hypes = json.load(open(os.path.join(model_dir, "resolved_hypes.json")))
