@@ -99,8 +99,8 @@ class LiveHealInput:
                        os.path.join(self._cav_dir(aid), FRAME + ".yaml"))
             tmp_png = os.path.join(staging, FRAME + "_camera0.png")
             # PNG level 1: lossless like the offline pipeline, fast on tmpfs.
-            if not cv2.imwrite(tmp_png, self.undistort(aid, f["front_bgr"]),
-                               [cv2.IMWRITE_PNG_COMPRESSION, 1]):
+            f["front_undist"] = self.undistort(aid, f["front_bgr"])  # what HEAL sees; the viewer reuses it
+            if not cv2.imwrite(tmp_png, f["front_undist"], [cv2.IMWRITE_PNG_COMPRESSION, 1]):
                 raise IOError("could not write %s" % tmp_png)
             os.replace(tmp_png, os.path.join(self._cav_dir(aid), FRAME + "_camera0.png"))
 

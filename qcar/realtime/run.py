@@ -2,6 +2,7 @@
 
     python -m qcar.realtime.run                       # every default from qcar/realtime/conf.json
     python -m qcar.realtime.run --no_model            # receive + format only (check the link)
+    python -m qcar.realtime.run --no_view             # no windows (headless / over SSH)
     python -m qcar.realtime.run --master 1=http://127.0.0.1:11411 --master 2=http://127.0.0.1:11412
                                                       # against qcar/realtime/fake_car.py
 
@@ -77,6 +78,9 @@ def parse_args():
     ap.add_argument("--amp", dest="amp", action="store_true")
     ap.add_argument("--no_amp", dest="amp", action="store_false")
     ap.set_defaults(amp=rt["amp"])
+    ap.add_argument("--no_view", dest="view", action="store_false",
+                    help="do not open the live viewer (default: conf view)")
+    ap.set_defaults(view=rt["view"])
     ap.add_argument("--no_model", action="store_true",
                     help="receive, pair and format only; do not load/run HEAL")
     ap.add_argument("--max_pairs", type=int, default=None,
@@ -189,6 +193,19 @@ def main():
         os.makedirs(os.path.dirname(opt.output_jsonl.format(session=session)), exist_ok=True)
         out = open(opt.output_jsonl.format(session=session), "w")
 
+    viewer = None
+    if opt.view:
+        if not os.environ.get("DISPLAY"):
+            print("[realtime] no DISPLAY -- viewer disabled (use --no_view to silence this)")
+        else:
+            from qcar.realtime.viewer import LiveViewer
+            walls = json.load(open(bi._path_from_conf("walls_json")))["walls"]
+            viewer = LiveViewer(agents, ego_id,
+                                dict((a, bi.CAR_REGISTRY[a]["car_label"]) for a in agents),
+                                dict((a, bi.CAM_PARAMS[a]["K"]) for a in agents),
+                                walls, rt["view_bev_range_m"], rt["view_max_hz"])
+            print("[realtime] viewer open: 2 POV windows + bird's-eye view (q to stop)")
+
     model = None
     queues = dict((a, collections.deque(maxlen=64)) for a in agents)
     stats = collections.Counter()
@@ -225,6 +242,10 @@ def main():
             while pq and now - pq[0]["arrival"] > pair_wait + 1.0:
                 pq.popleft()
 
+            if viewer is not None:
+                if viewer.quit:
+                    break
+                viewer.pump()
             if pair is None:
                 time.sleep(0.002)
             else:
@@ -261,6 +282,16 @@ def main():
                     out.flush()
                     latencies.append(rec["latency_from_last_arrival_sec"])
                     stats["detections"] += len(scores)
+                if viewer is not None and viewer.due():
+                    if opt.no_model:
+                        viewer.update(frames, np.zeros((0, 8, 3)), np.zeros(0),
+                                      {"pair": n_pairs, "status": "sin modelo (--no_model)"})
+                    else:
+                        viewer.update(frames, boxes, scores, {
+                            "pair": n_pairs, "n_agents_fused": timing.get("n_agents_fused", "-"),
+                            "status": "latencia %.0f ms | modelo %.0f ms" % (
+                                rec["latency_from_last_arrival_sec"] * 1000,
+                                timing.get("model_s", 0) * 1000)})
                 n_pairs += 1
                 stats["pairs"] += 1
 

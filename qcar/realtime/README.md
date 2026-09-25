@@ -16,6 +16,7 @@ car roscore ──TCPROS──> ros1.py ──> sync.py (per car) ──> pairin
 | `ros1.py` | pure-Python ROS1 subscriber (no ROS install; one process talks to both cars' masters) |
 | `sync.py` | live port of `bag_to_dataset_rosbags.py`'s frame sync; **imports** its functions |
 | `heal_input.py` | writes the pair via `build_inference.py`'s **imported** `build_agent_yaml`/calibration; builds HEAL dataset + model like `qcar/eval.py` |
+| `viewer.py` | live viewer (on by default): each CAV's POV with the fused detections projected + bird's-eye view; `q` stops, `--no_view` disables |
 | `fake_car.py` | replays recorded `.bag`s as live roscores, for testing without the cars |
 | `conf.json` | every default (flags override for one run) |
 
@@ -30,6 +31,7 @@ the same settings that built the training data.
 python -m qcar.realtime.run                 # real cars (masters in conf.json "cars")
 python -m qcar.realtime.run --no_model      # link check: receive + sync + pair + format only
 python -m qcar.realtime.run --record_dir data_live   # also save pairs in converter layout
+python -m qcar.realtime.run --no_view       # no windows (headless / SSH without X)
 
 # without cars
 python -m qcar.realtime.fake_car &
@@ -59,4 +61,6 @@ Vicon frame), scores, both poses, the pairing offset, and latency broken down by
 - Live front images are byte-identical to the converted dataset. Vicon poses are
   identical or one adjacent sample away (≤7 mm), which comes from causal selection
   by arrival time.
+- Viewer geometry checked by placing boxes at the two static targets' Vicon positions: the box
+  lands on the real car in the peer's POV and behind the wall in the ego's POV. Redraw ≈32 ms (Tk).
 - Model forward on the live stream not yet run: the GPU was occupied during testing.
