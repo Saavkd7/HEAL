@@ -174,7 +174,8 @@ def main():
                                sync_conf["wait_sec"], pair_tol))
 
     live = heal_input.LiveHealInput(bi, opt.live_dir)
-    syncs = dict((a, CarSync(conv, opt.cameras, sync_conf)) for a in agents)
+    syncs = dict((a, CarSync(conv, opt.cameras, sync_conf, rt["max_network_lag_sec"]))
+                 for a in agents)
     subs = []
     for aid in agents:
         for name in syncs[aid].cameras + ["vicon"]:
@@ -249,6 +250,10 @@ def main():
             if viewer is not None:
                 if viewer.quit:
                     break
+                if n_pairs == 0 and now - viewer.last_draw >= 1.0:
+                    viewer.waiting("Esperando datos... frames: %s | pares: 0" % ", ".join(
+                        "CAV %s=%d" % (a, syncs[a].frames) for a in agents))
+                    viewer.last_draw = now
                 viewer.pump()
             if pair is None:
                 time.sleep(0.002)
@@ -265,6 +270,8 @@ def main():
                 if not opt.no_model:
                     if model is None:
                         print("[realtime] first pair formatted -- loading model %s" % opt.model_dir)
+                        if viewer is not None:
+                            viewer.waiting("Primer par recibido - cargando modelo HEAL...")
                         model = heal_input.LiveModel(opt.model_dir, opt.live_dir, qconf, opt,
                                                      opt.amp)
                         print("[realtime] model on %s, amp=%s" % (model.device, model.amp))

@@ -17,13 +17,22 @@ import collections
 import json
 import threading
 
+import cv2
+import numpy as np
+
 
 class CarSync:
-    def __init__(self, conv, cameras, sync_conf):
+    def __init__(self, conv, cameras, sync_conf, network_lag_sec):
         """conv: the imported bag_to_dataset_rosbags module.
         cameras: camera names to deliver ('front' is always the reference).
         sync_conf: fps / wait_sec / camera_tolerance / vicon_max_age /
-        vicon_pose_key, read from the converter's own conf.json."""
+        vicon_pose_key, read from the converter's own conf.json.
+        network_lag_sec: extra buffer retention. In a bag, a message's
+        "arrival" was its record time on the car; live it is the WiFi
+        delivery time, and a saturated link delays images far more than the
+        small Vicon strings -- without this margin the Vicon sample matching
+        a late image has already been pruned (seen live 2026-09-25: ~1 s lag,
+        nearly every frame rejected as missing_or_stale_vicon)."""
         self.conv = conv
         self.cameras = ["front"] + [c for c in cameras if c != "front"]
         self.fps = float(sync_conf["fps"])
@@ -31,7 +40,8 @@ class CarSync:
         self.camera_tolerance = float(sync_conf["camera_tolerance"])
         self.vicon_max_age = float(sync_conf["vicon_max_age"])
         self.vicon_pose_key = sync_conf["vicon_pose_key"]
-        self.retention = max(self.camera_tolerance, self.vicon_max_age) + self.wait_sec + 1.0
+        self.retention = (max(self.camera_tolerance, self.vicon_max_age) + self.wait_sec
+                          + 1.0 + float(network_lag_sec))
         self.buffers = dict((name, collections.deque()) for name in self.cameras + ["vicon"])
         self.pending = collections.deque()
         self.next_reference_stamp = None
@@ -44,7 +54,14 @@ class CarSync:
     def push(self, name, raw, msgtype, arrival):
         """Called from a subscriber thread for every message of `name`."""
         msg = self.conv.TYPESTORE.deserialize_ros1(raw, msgtype)
-        entry = {"stamp": self.conv.source_stamp(msgtype, msg, arrival),
+        if msgtype == "sensor_msgs/msg/CompressedImage":
+            # the converter's source_stamp only knows raw Image; same rule:
+            # header stamp when set, else arrival.
+            stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+            stamp = stamp if stamp > 0 else arrival
+        else:
+            stamp = self.conv.source_stamp(msgtype, msg, arrival)
+        entry = {"stamp": stamp,
                  "arrival": arrival, "message": msg,
                  "raw": msg.data if msgtype == "std_msgs/msg/String" else None}
         with self._lock:
@@ -137,4 +154,10 @@ class CarSync:
         }
 
     def decode_image(self, msg):
+        if hasattr(msg, "format"):  # sensor_msgs/CompressedImage (JPEG/PNG)
+            data = msg.data.tobytes() if hasattr(msg.data, "tobytes") else bytes(msg.data)
+            image = cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_COLOR)
+            if image is None:
+                raise ValueError("could not decode CompressedImage (%s)" % msg.format)
+            return image
         return self.conv.image_message_to_bgr(msg)

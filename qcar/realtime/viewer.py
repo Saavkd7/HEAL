@@ -72,7 +72,21 @@ class LiveViewer:
             label = tk.Label(win, bg="black")
             label.pack()
             self.labels_tk[key] = label
-        self.root.update()
+        self.waiting("Esperando datos de los carros...")
+
+    def waiting(self, text):
+        """Placeholder shown until the first fused pair (Tk windows are
+        otherwise blank), and again with `text` updated by run.py."""
+        for key in self.labels_tk:
+            size = (480, 640) if key != "bev" else (600, 700)
+            img = np.full(size + (3,), 40, dtype=np.uint8)
+            cv2.putText(img, text, (20, size[0] // 2), cv2.FONT_HERSHEY_SIMPLEX, 0.6,
+                        (255, 255, 255), 1, cv2.LINE_AA)
+            self._show(key, img)
+        try:
+            self.root.update()
+        except Exception:  # noqa: BLE001 -- window torn down
+            self.quit = True
 
     def _on_close(self):
         self.quit = True
